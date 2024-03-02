@@ -16,6 +16,8 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 <h3>Funcionalidades do Projeto:</h3>
 <hr>
 
+<a href="https://www.figma.com/file/IuWKSXrcwhTbY6hYlbj7kA/Untitled?type=design&node-id=2-61&mode=design&t=kYoEIR7NIw6bwiUj-0" target="_blank">Figma</a>
+
 <ul>
   <li>Integração de banco de dados.</li>
   <li>Página inicial antes do login.</li>
