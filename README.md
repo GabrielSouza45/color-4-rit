@@ -13,6 +13,22 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 
 <br>
 
+<h3>Funcionalidades do Projeto:</h3>
+<hr>
+
+<ul>
+  <li>Integração de banco de dados.</li>
+  <li>Página inicial antes do login.</li>
+  <li>Página após Login.</li>
+  <li>Mapas de gameplay de 4 blocos, 9 blocos e 16 blocos. (de acordo com a dificulade).</li>
+  <li>Tela de progresso</li>
+  <li>Tela antes de Login vai possuir placar dos melhores usuários.</li>
+  <li>Tela de gameplay vai possuir área para apresentação de próxima cor de bloco selecionado, tela de placar</li>
+  <li>sistema de deméritos: se errar dez vezez, game-over. Se a pessoa acertar 5 notas seguidas, e tiver entre 1 e 9 deméritos, remove um demérito</li>
+</ul>
+
+<br>
+
 <h3>Sobre as branchs:</h3>
 <hr>
 <h4>Atenção:</h4>
@@ -27,8 +43,7 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 <p>Após realizados os testes e confirmado o funcionamento do projeto, deverá ser publicado na branch 01_principal</p>
 <br>
 
-<h3>Funcionalidades do Projeto:</h3>
-<hr>
+
 
 <h3>Como dar push na branch 01_principal:</h3>
 <hr>
