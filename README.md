@@ -35,19 +35,19 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 <hr>
 <h4>Atenção:</h4>
 <p>
-  <strong>Antes de realizar alterações no arquivo, deve-se confirmar se você está na sua branch e se ela está atualizada com a branch 01_principal</strong>
+  <strong>Antes de realizar alterações no arquivo, deve-se confirmar se você está na sua branch e se ela está atualizada com a branch main</strong>
 </p>
 <br>
 
 <p>Cada integrante tem sua própria branch onde deverá desenvolver seu código e realizar os testes</p>
-<p>A branch 01_principal é a branch onde ficará o projeto funcionando e <strong>já testado</strong></p>
+<p>A branch main é a branch onde ficará o projeto funcionando e <strong>já testado</strong></p>
 <p>Após realizado a alteração/craiação de código, testar na sua branch se está tudo funcionando</p>
-<p>Após realizados os testes e confirmado o funcionamento do projeto, deverá ser publicado na branch 01_principal</p>
+<p>Após realizados os testes e confirmado o funcionamento do projeto, deverá ser publicado na branch main</p>
 <br>
 
 
 
-<h3>Como dar push na branch 01_principal:</h3>
+<h3>Como dar push na branch main:</h3>
 <hr>
 
 <strong>Github Desktop:</strong>
@@ -61,25 +61,25 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 </ul>
 <br>
 
-<p> 2° Passo - Sincronizar sua branch com a branch 01_principal (baixar atualizações)</p>
+<p> 2° Passo - Sincronizar sua branch com a branch main (baixar atualizações)</p>
 <ul>
   <li>Clicar em Fetch Origin</li>
   <li>Clicar em Current Branch (Confirmar se está em sua branch)</li>
   <li>Selecionar "Choose a branch to merge into 'sua_branch'"</li>
-  <li>Selecionar a Branch 01_principal</li>
+  <li>Selecionar a Branch main</li>
   <li>Clicar em "Create a merge commit"</li>
   <li>Clicar em Push origin</li>
 </ul>
 <br>
 
-<p> 3° Passo - Subir suas alterações para a branch 01_principal</p>
+<p> 3° Passo - Subir suas alterações para a branch main</p>
 <ul>
   <li>Clicar em Current Branch (Confirmar se está em sua branch)</li>
-  <li>Selecionar a branch 01_principal </li>
+  <li>Selecionar a branch main </li>
   <p>(caso existam arquivos que voce nao deseja subir, selecione: 
     <br>"Leave my changes on 'sua_branch'")</p>
-  <li>Clicar em Current Branch (Confirmar se está na branch 01_principal)</li>
-  <li>Selecionar "Choose a branch to merge into 01_principal"</li>
+  <li>Clicar em Current Branch (Confirmar se está na branch main)</li>
+  <li>Selecionar "Choose a branch to merge into main"</li>
   <li>Selecionar a sua branch</li>
   <li>Clicar em "Create a merge commit"</li>
   <li>Clicar em Push origin</li>
