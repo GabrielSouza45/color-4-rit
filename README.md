@@ -13,7 +13,40 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 
 <br>
 
+
 <h3>Funcionalidades do Projeto:</h3>
+<ul>
+    <li>Der:</li>
+  
+  ![Der](/images/DER.png)
+  
+  <li>Mer:</li>
+  
+  ![Mer](/images/MER.png)
+
+  <li>Tela Inicial:</li>
+  
+  ![TelaAntesDoLogin](/images/TelaAntesDoLogin.jpeg)
+  
+  <li>Tela de login:</li>
+  
+  ![TelaDeLogin](/images/TelaDeLogin.jpeg)
+  
+  <li>Menu:</li>
+  
+  ![TelaDepoisDoLogin](/images/TelaDepoisDoLogin.jpeg)
+  
+  <li>Tela Game Facil:</li>
+  
+  ![TelaGameFacil](/images/TelaGameFacil.jpeg)
+
+  <li>Tela Game Medio:</li>
+  
+  ![TelaGameMedio](/images/TelaGameMedio.jpeg)
+
+  <li>Tela Game Dificil:</li>
+  
+  ![TelaGameMedio](/images/TelaGameDificil.jpeg)
 <hr>
 
 <a href="https://www.figma.com/file/IuWKSXrcwhTbY6hYlbj7kA/Untitled?type=design&node-id=2-61&mode=design&t=kYoEIR7NIw6bwiUj-0" target="_blank">Figma</a>
