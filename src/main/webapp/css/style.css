@@ -1,0 +1,25 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+body{
+	background-color: #eae5e5;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+canvas {
+padding-left: 0;
+padding-right: 0;
+margin-left: auto;
+margin-right: auto;
+display: block;
+background-color: black;
+
+}
