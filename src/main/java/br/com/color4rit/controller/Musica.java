@@ -1,57 +1,35 @@
 package br.com.color4rit.controller;
 
+import br.com.color4rit.repository.CrudDao;
+
 import java.sql.Blob;
+import java.util.List;
 
-public class Musica {
-
-    private String nome;
-    private String autor;
-    private int id;
-    private Blob musica;
-
-
-
-    // precisa ser mexido para conversao do blob para a msc
-   // public Blob getMusica() {
-     //   return musica;
-    //}
-
-    //public void setMusica(Blob musica) {
-     //   this.musica = musica;
-    //}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+public class Musica extends ConectarDao implements CrudDao<Musica> {
 
 
     @Override
-    public String toString() {
-        return "Musica{" +
-                "nome='" + nome + '\'' +
-                ", autor='" + autor + '\'' +
-                ", id=" + id +
-                ", musica=" + musica +
-                '}';
+    public void criarTabela() {
+
+    }
+
+    @Override
+    public List<Musica> listarTodos() {
+        return null;
+    }
+
+    @Override
+    public void cadastrar(Musica objeto) {
+
+    }
+
+    @Override
+    public void editar(Musica objeto) {
+
+    }
+
+    @Override
+    public void excluir(Musica objeto) {
+
     }
 }

@@ -1,57 +1,34 @@
 package br.com.color4rit.controller;
 
-import br.com.color4rit.controller.Jogador;
-import br.com.color4rit.controller.Musica;
+import br.com.color4rit.repository.CrudDao;
 
-public class Rank {
+import java.util.List;
 
-    private int id;
-
-    private int pontuacao;
-
-    private Jogador jogador;
-    private Musica musica;
+public class Rank extends ConectarDao implements CrudDao<Rank> {
 
 
-
-    public Musica getMusica() {
-        return musica;
-    }
-
-    public void setMusica(Musica musica) {
-        this.musica = musica;
-    }
-
-    public Jogador getJogador() {
-        return jogador;
-    }
-
-    public void setJogador(Jogador jogador) {
-        this.jogador = jogador;
-    }
-
-    public int getPontuacao() {
-        return pontuacao;
-    }
-
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     @Override
-    public String toString() {
-        return "Rank{" +
-                "id=" + id +
-                ", pontuacao=" + pontuacao +
-                ", jogador=" + jogador +
-                ", musica=" + musica +
-                '}';
+    public void criarTabela() {
+
+    }
+
+    @Override
+    public List<Rank> listarTodos() {
+        return null;
+    }
+
+    @Override
+    public void cadastrar(Rank objeto) {
+
+    }
+
+    @Override
+    public void editar(Rank objeto) {
+
+    }
+
+    @Override
+    public void excluir(Rank objeto) {
+
     }
 }

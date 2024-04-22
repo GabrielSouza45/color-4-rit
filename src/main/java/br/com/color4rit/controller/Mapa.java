@@ -1,35 +1,34 @@
 package br.com.color4rit.controller;
 
-public class Mapa {
+import br.com.color4rit.repository.CrudDao;
 
-    private int id;
+import java.util.List;
 
-    private Enum dificuldade;
+public class Mapa extends ConectarDao implements CrudDao<Mapa> {
 
-    private Musica musica;
 
-    public Musica getMusica() {
-        return musica;
-    }
+    @Override
+    public void criarTabela() {
 
-    public void setMusica(Musica musica) {
-        this.musica = musica;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
-    public String toString() {
-        return "Mapa{" +
-                "id=" + id +
-                ", dificuldade=" + dificuldade +
-                ", musica=" + musica +
-                '}';
+    public List<Mapa> listarTodos() {
+        return null;
+    }
+
+    @Override
+    public void cadastrar(Mapa objeto) {
+
+    }
+
+    @Override
+    public void editar(Mapa objeto) {
+
+    }
+
+    @Override
+    public void excluir(Mapa objeto) {
+
     }
 }

@@ -1,44 +1,34 @@
 package br.com.color4rit.controller;
 
-import br.com.color4rit.controller.Jogador;
-import br.com.color4rit.controller.Musica;
+import br.com.color4rit.repository.CrudDao;
 
-public class Sessao {
+import java.util.List;
 
-    private int id;
-    private Jogador jogador;
-    private Musica musica;
+public class Sessao extends ConectarDao implements CrudDao<Sessao> {
 
-    public Musica getMusica() {
-        return musica;
-    }
 
-    public void setMusica(Musica musica) {
-        this.musica = musica;
-    }
+    @Override
+    public void criarTabela() {
 
-    public Jogador getJogador() {
-        return jogador;
-    }
-
-    public void setJogador(Jogador jogador) {
-        this.jogador = jogador;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
-    public String toString() {
-        return "Sessao{" +
-                "id=" + id +
-                ", jogador=" + jogador +
-                ", musica=" + musica +
-                '}';
+    public List<Sessao> listarTodos() {
+        return null;
+    }
+
+    @Override
+    public void cadastrar(Sessao objeto) {
+
+    }
+
+    @Override
+    public void editar(Sessao objeto) {
+
+    }
+
+    @Override
+    public void excluir(Sessao objeto) {
+
     }
 }
