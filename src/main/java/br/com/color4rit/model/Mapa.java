@@ -28,7 +28,13 @@ public class Mapa {
         this.id = id;
     }
 
+    public Dificuldade getDificuldade() {
+        return dificuldade;
+    }
 
+    public void setDificuldade(Dificuldade dificuldade) {
+        this.dificuldade = dificuldade;
+    }
 
     @Override
     public String toString() {

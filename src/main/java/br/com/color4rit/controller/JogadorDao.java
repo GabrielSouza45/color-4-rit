@@ -58,6 +58,11 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
         }
     }
 
+    @Override
+    public Jogador listarPorId(long id) {
+        return null;
+    }
+
     public void cadastrar(Jogador objeto) {
 
         String sql = "";

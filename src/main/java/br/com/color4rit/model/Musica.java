@@ -9,7 +9,14 @@ public class Musica {
     private Long id;
     private Blob musica;
 
+    public Musica(String nome, String autor, Long id) {
+        this.nome = nome;
+        this.autor = autor;
+        this.id = id;
+    }
 
+    public Musica() {
+    }
 
     // precisa ser mexido para conversao do blob para a msc
    // public Blob getMusica() {

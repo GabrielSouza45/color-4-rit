@@ -1,6 +1,6 @@
 package br.com.color4rit.model;
 
-public class Rank {
+public class Placar {
 
     private Long id;
 
