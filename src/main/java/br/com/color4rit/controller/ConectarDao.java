@@ -5,7 +5,7 @@ import java.sql.*;
 public class ConectarDao {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private final static String url =
-            "jdbc:mysql://127.0.0.1:3306/color4hit?useTimeZone=true&serverTimeZone=UTC";
+            "jdbc:mysql://color-4-rit.ctqs8sckwdnb.sa-east-1.rds.amazonaws.com:3306/color4hit?useTimeZone=true&serverTimeZone=UTC";
     private final static String usuario = "";
     private final static String senha = "";
     private static Connection conexao;
