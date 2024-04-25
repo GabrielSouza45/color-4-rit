@@ -38,5 +38,7 @@ public class Main {
         nota1.setTempo(2.0);
         nota1.setMapa(mapa1);
 
+        ConectarDao dao = new ConectarDao();
+        System.out.println(dao.getConexao());
     }
 }
