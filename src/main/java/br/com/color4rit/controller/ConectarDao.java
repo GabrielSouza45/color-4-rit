@@ -5,9 +5,9 @@ import java.sql.*;
 public class ConectarDao {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private final static String url =
-            "jdbc:mysql://color-4-rit.ctqs8sckwdnb.sa-east-1.rds.amazonaws.com:3306/color4hit?useTimeZone=true&serverTimeZone=UTC";
-    private final static String usuario = "";
-    private final static String senha = "";
+            "jdbc:mysql://color4rit.ctqs8sckwdnb.sa-east-1.rds.amazonaws.com:3306/color4rit?useTimeZone=true&serverTimeZone=UTC";
+    private final static String usuario = "root";
+    private final static String senha = "color#123";
     private static Connection conexao;
 
 
