@@ -17,11 +17,11 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
     @Override
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS `Mapa` (" +
-                "`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                "`dificuldade` VARCHAR(50), " +
-                "`fk_musica` BIGINT UNSIGNED, " +
-                "FOREIGN KEY (`fk_musica`) REFERENCES `Musica`(`id`)";
+        String sql = "CREATE TABLE IF NOT EXISTS `MAPA` (" +
+                "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "`DIFICULDADE` VARCHAR(50), " +
+                "`FK_MUSICA` BIGINT UNSIGNED, " +
+                "FOREIGN KEY (`FK_MUSICA`) REFERENCES `musica`(`ID`)";
 
         PreparedStatement ps = null;
 
@@ -37,7 +37,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
     @Override
     public List<Mapa> listarTodos(){
-        String sql ="SELECT * FROM Mapa";
+        String sql ="SELECT * FROM MAPA";
 
         try {
         PreparedStatement ps = (PreparedStatement)
@@ -50,9 +50,9 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
         while (res.next()) {
             Mapa mapinha = new Mapa();
 
-            mapinha.setId(res.getLong("id"));
-            mapinha.setDificuldade(Dificuldade.valueOf(res.getString("dificuldade")));
-            mapinha.setMusica(new MusicaDao().listarPorId(res.getLong("fk_musica")));
+            mapinha.setId(res.getLong("ID"));
+            mapinha.setDificuldade(Dificuldade.valueOf(res.getString("DIFICULDADE")));
+            mapinha.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
 
             mapas.add(mapinha);
         }
@@ -60,14 +60,14 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
         return mapas;
     } catch(
     SQLException e) {
-        JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
         return null;
     }
 }
 
     public Mapa listarPorId(long id) {
 
-        String sql = "SELECT * FROM Mapa WHERE id = ?";
+        String sql = "SELECT * FROM mapa WHERE ID = ?";
 
         try {
 
@@ -88,7 +88,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
                 return mapa;
             } else {
-                throw new RuntimeException("Erro ao encontrar Mapa");
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +97,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
     }
 
     public Mapa buscarMusicaPorId(Musica musica){
-        String sql = "SELECT * FROM Mapa WHERE fk_musica = ?";
+        String sql = "SELECT * FROM MAPA WHERE FK_MUSICA = ?";
 
         try {
             PreparedStatement ps = (PreparedStatement)
@@ -108,22 +108,21 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
             ResultSet res = ps.executeQuery();
 
             Mapa mapa = new Mapa();
-            mapa.setId(res.getLong("id"));
+            mapa.setId(res.getLong("ID"));
             mapa.setMusica(new Musica("Loretta", "Ginger Root", 1L));
-            mapa.setDificuldade(Dificuldade.valueOf(res.getString("dificuldade")));
-            mapa.setMusica(new MusicaDao().listarPorId(res.getLong("fk_musica")));
+            mapa.setDificuldade(Dificuldade.valueOf(res.getString("DIFICULDADE")));
+            mapa.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
 
             return mapa;
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Música.\n" +
-                    e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
 
     @Override
     public void cadastrar(Mapa objeto) {
-        String sql = "INSERT INTO Mapa (dificuldade, fk_musica) VALUES(?,?);";
+        String sql = "INSERT INTO MAPA (DIFICULDADE, FK_MUSICA) VALUES(?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -132,17 +131,16 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
             ps.execute();
 
-            JOptionPane.showMessageDialog(null, "Mapa cadastrado com sucesso!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o mapa. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void editar(Mapa objeto) {
-        String sql = "UPDATE Mapa SET " +
-                "dificuldade = ?, fk_musica = ?" +
-                "WHERE id = ?";
+        String sql = "UPDATE MAPA SET " +
+                "DIFICULDADE = ?, FK_MUSICA = ?" +
+                "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, String.valueOf(objeto.getDificuldade()));
@@ -150,16 +148,14 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Mapa atualizado com sucesso");
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar mapa. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void excluir(Mapa objeto) {
-        String sql = "DELETE FROM Mapa WHERE id = ? ";
+        String sql = "DELETE FROM MAPA WHERE ID = ? ";
         try {
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -168,12 +164,12 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
             int rowCount = ps.executeUpdate();
 
             if (rowCount > 0) {
-                JOptionPane.showMessageDialog(null, "Mapa excluido com sucesso!");
+                System.out.println("Mapa excluido com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(null, "Mapa não encontrado com o id fornecido.");
+                System.out.println("Mapa não encontrado com o id fornecido.");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar Mapa.\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

@@ -14,11 +14,11 @@ import java.util.List;
 public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS `Jogador` (" +
-                "`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                "`nome` VARCHAR(255)," +
-                "`login` VARCHAR(255)," +
-                "`senha` VARCHAR(255));";
+        String sql = "CREATE TABLE IF NOT EXISTS `jogador` (" +
+                "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "`NOME` VARCHAR(255)," +
+                "`LOGIN` VARCHAR(255)," +
+                "`SENHA` VARCHAR(255));";
 
         PreparedStatement ps = null;
 
@@ -33,7 +33,7 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
     }
 
     public List<Jogador> listarTodos() {
-        String sql = "SELECT * FROM Jogador";
+        String sql = "SELECT * FROM jogador";
 
         try {
 
@@ -47,10 +47,10 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
             while (res.next()) {
                 Jogador jogador = new Jogador();
 
-                jogador.setId(res.getLong(""));
-                jogador.setNome(res.getString(""));
-                jogador.setSenha(res.getString(""));
-                jogador.setLogin(res.getString(""));
+                jogador.setId(res.getLong("ID"));
+                jogador.setNome(res.getString("NOME"));
+                jogador.setLogin(res.getString("LOGIN"));
+                jogador.setSenha(res.getString("SENHA"));
 
                 jogadores.add(jogador);
             }
@@ -65,7 +65,7 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
     }
 
     public Jogador listarPorId(long id) {
-        String sql = "SELECT * FROM Jogador WHERE id = ?";
+        String sql = "SELECT * FROM JOGADOR WHERE ID = ?";
 
         try {
 
@@ -77,23 +77,23 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
             Jogador objeto = new Jogador();
 
             if (res.next()){
-                objeto.setId(res.getLong("id"));
-                objeto.setNome(res.getString("nome"));
-                objeto.setLogin(res.getString("login"));
-                objeto.setSenha(res.getString("senha"));
+                objeto.setId(res.getLong("ID"));
+                objeto.setNome(res.getString("NOME"));
+                objeto.setLogin(res.getString("LOGIN"));
+                objeto.setSenha(res.getString("SENHA"));
                 return objeto;
             }
 
             return null;
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Jogador. \n" + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
 
     public void cadastrar(Jogador objeto) {
 
-        String sql = "INSERT INTO Jogador (nome, login, senha) VALUES(?,?,?);";
+        String sql = "INSERT INTO JOGADOR (NOME, LOGIN, SENHA) VALUES(?,?,?);";
         try{
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -103,16 +103,15 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
             ps.execute();
 
-            JOptionPane.showMessageDialog(null, "Jogador cadastrado com sucesso!");
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar jogador. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void editar(Jogador objeto) {
-        String sql = "UPDATE Jogador SET" +
-                "nome = ?, login = ?, senha = ?" +
-                "WHERE id = ?";
+        String sql = "UPDATE JOGADOR SET" +
+                "NOME = ?, LOGIN = ?, SENHA = ?" +
+                "WHERE ID = ?";
 
         try {
 
@@ -123,15 +122,13 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Jogador editado com sucesso!");
-
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro ao editar o jogador. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void excluir(Jogador objeto) {
-        String sql = "DELETE FROM Jogador WHERE id = ? ";
+        String sql = "DELETE FROM JOGADOR WHERE ID = ? ";
         try {
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -140,12 +137,12 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
             int rowCount = ps.executeUpdate();
 
             if (rowCount > 0){
-                JOptionPane.showMessageDialog(null, "Jogador excluido com sucesso!");
+                System.out.println("Jogador excluido com sucesso!");
             }else {
-                JOptionPane.showMessageDialog(null, "Jogador não encontrado com o id fornecido.");
+                System.out.println("Jogador não encontrado com o id fornecido.");
             }
         }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, "Erro ao deletar jogador.\n"+ e.getMessage());
+            e.printStackTrace();
             }
         }
     }

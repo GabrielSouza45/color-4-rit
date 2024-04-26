@@ -17,12 +17,12 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
     @Override
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS `Nota` (\n" +
-                "  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
-                "  `fk_mapa` BIGINT UNSIGNED,\n" +
-                "  `cor` VARCHAR(50),\n" +
-                "  `tempo` TIME,\n" +
-                "  FOREIGN KEY (`fk_mapa`) REFERENCES `Mapa`(`id`)";
+        String sql = "CREATE TABLE IF NOT EXISTS `NOTA` (\n" +
+                "  `ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
+                "  `FK_MAPA` BIGINT UNSIGNED,\n" +
+                "  `COR` VARCHAR(50),\n" +
+                "  `TEMPO` TIME,\n" +
+                "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)";
 
         PreparedStatement ps = null;
 
@@ -38,7 +38,7 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
     @Override
     public List<Nota> listarTodos() {
-        String sql = "SELECT * FROM Nota";
+        String sql = "SELECT * FROM NOTA";
 
         try {
             PreparedStatement ps = (PreparedStatement)
@@ -51,25 +51,24 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             while (res.next()) {
                 Nota notinha = new Nota();
 
-                notinha.setId(res.getLong("id"));
-                notinha.setCor(Cor.valueOf(res.getString("cor")));
-                notinha.setTempo(res.getTime("tempo"));
-                notinha.setMapa(new MapaDao().listarPorId(res.getLong("fk_mapa")));
+                notinha.setId(res.getLong("ID"));
+                notinha.setCor(Cor.valueOf(res.getString("COR")));
+                notinha.setTempo(res.getTime("TEMPO"));
+                notinha.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
 
                 notas.add(notinha);
             }
 
             return notas;
         } catch (
-                SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+                SQLException e) {e.printStackTrace();
             return null;
         }
     }
 
 
     public Nota listarPorId(long id) {
-        String sql = "SELECT * FROM Nota WHERE id = ?";
+        String sql = "SELECT * FROM NOTA WHERE ID = ?";
 
         try {
             PreparedStatement ps = (PreparedStatement)
@@ -81,14 +80,14 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             Nota nota = new Nota();
 
             if (res.next()) {
-                nota.setId(res.getLong("id"));
-                nota.setCor(Cor.valueOf(res.getString("cor")));
-                nota.setTempo(res.getTime("tempo"));
-                nota.setMapa(new MapaDao().listarPorId(res.getLong("fk_mapa")));
+                nota.setId(res.getLong("ID"));
+                nota.setCor(Cor.valueOf(res.getString("COR")));
+                nota.setTempo(res.getTime("TEMPO"));
+                nota.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
 
                 return nota;
             } else {
-                throw new RuntimeException("Erro ao encontrar a Nota");
+               return  null;
             }
         } catch (
                 SQLException e) {
@@ -98,7 +97,7 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
     }
     @Override
     public void cadastrar(Nota objeto) {
-        String sql = "INSERT INTO Nota (cor, tempo, fk_mapa) VALUES(?,?,?);";
+        String sql = "INSERT INTO NOTA (COR, TEMPO, FK_MAPA) VALUES(?,?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -107,18 +106,16 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             ps.setLong(3, objeto.getMapa().getId());
 
             ps.execute();
-
-            JOptionPane.showMessageDialog(null, "Nota cadastrada com sucesso!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar a Nota. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void editar(Nota objeto) {
-        String sql = "UPDATE Nota SET " +
-                "cor = ?, tempo = ?, fk_mapa = ?" +
-                "WHERE id = ?";
+        String sql = "UPDATE NOTA SET " +
+                "COR = ?, TEMPO = ?, FK_MAPA = ?" +
+                "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, String.valueOf(objeto.getCor()));
@@ -127,16 +124,14 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Nota atualizada com sucesso");
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar a Nota. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void excluir(Nota objeto) {
-        String sql = "DELETE FROM Nota WHERE id = ? ";
+        String sql = "DELETE FROM NOTA WHERE ID = ? ";
         try {
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -145,18 +140,19 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             int rowCount = ps.executeUpdate();
 
             if (rowCount > 0) {
-                JOptionPane.showMessageDialog(null, "Nota excluida com sucesso!");
+                System.out.println("Nota excluida com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(null, "Nota não encontrada com o id fornecido.");
+                System.out.println("Nota não encontrada com o id fornecido.");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar a Nota.\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public List<Nota> listarPorMapa(Mapa mapa){
         String sql = "SELECT * FROM NOTA" +
-                " WHERE FK_MAPA = ?";
+                " WHERE FK_MAPA = ?" +
+                " ORDER BY TEMPO";
 
         try {
 

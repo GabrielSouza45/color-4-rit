@@ -1,62 +1,62 @@
 USE color4rit;
 
-SELECT * FROM Jogador;
+SELECT * FROM jogador;
 
-INSERT INTO Jogador (nome, login, senha)
+INSERT INTO jogador (nome, login, senha)
 VALUES ('admin', 'admin@admin.com', 'color#1234');
 
 
-SELECT * FROM Musica;
+SELECT * FROM musica;
 
-INSERT INTO Musica (duracao, nome, autor)
+INSERT INTO musica (duracao, nome, autor)
 VALUES ('00:02:55','tropa do kusterverso', 'loren tralha');
 
 
-SELECT * FROM Mapa;
+SELECT * FROM mapa;
 
-INSERT INTO Mapa (dificuldade, fk_musica)
+INSERT INTO mapa (dificuldade, fk_musica)
 VALUES ('facil', 1);
 
 
-SELECT * FROM Nota;
+SELECT * FROM nota;
 
-INSERT INTO Nota (fk_mapa, cor, tempo)
+INSERT INTO nota (fk_mapa, cor, tempo)
 VALUES (1, 'azul', '00:00:15');
 
 
-SELECT * FROM Placar;
+SELECT * FROM placar;
 
-INSERT INTO Placar (pontuacao, fk_jogador, fk_musica)
+INSERT INTO placar (pontuacao, fk_jogador, fk_musica)
 VALUES (300, 1, 1);
 
 
 
-UPDATE Musica 
+UPDATE musica 
 SET nome = 'nova musica' 
 WHERE id = 1;
 
-UPDATE Placar 
+UPDATE placar 
 SET pontuacao = 400 
 WHERE id = 1;
 
-UPDATE Jogador 
+UPDATE jogador 
 SET nome = 'novo nome' 
 WHERE id = 1;
 
-UPDATE Mapa
+UPDATE mapa
 SET dificuldade = 'nova dificuldade'
 WHERE id = 1;
 
-DELETE FROM Musica 
+DELETE FROM musica 
 WHERE id = 1;
 
-DELETE FROM Nota 
+DELETE FROM nota 
 WHERE id = 1;
 
-DELETE FROM Mapa 
+DELETE FROM mapa 
 WHERE id = 1;
 
-DELETE FROM Placar 
+DELETE FROM placar 
 WHERE id = 1;
 
 DELETE FROM Jogador 

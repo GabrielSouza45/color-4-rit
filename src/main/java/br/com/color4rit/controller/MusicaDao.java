@@ -17,10 +17,11 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
     @Override
     public void criarTabela() {
-        String sql = "`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
-                "  `nome` VARCHAR(255),\n" +
-                "  `autor` VARCHAR(255),\n" +
-                "  `duracao` TIME\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS `MUSICA` (\n" +
+                "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
+                "  `NOME` VARCHAR(255),\n" +
+                "  `AUTOR` VARCHAR(255),\n" +
+                "  `DURACAO` INT\n" +
                 ");";
 
         PreparedStatement ps = null;
@@ -37,7 +38,7 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
     @Override
     public List<Musica> listarTodos() {
-        String sql = "SELECT * FROM Musica";
+        String sql = "SELECT * FROM MUSICA";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -49,22 +50,22 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
             while (rs.next()) {
                 Musica musica = new Musica();
 
-                musica.setId(rs.getLong("id"));
-                musica.setNome(rs.getString("nome"));
-                musica.setAutor(rs.getString("autor"));
+                musica.setId(rs.getLong("ID"));
+                musica.setNome(rs.getString("NOME"));
+                musica.setAutor(rs.getString("AUTOR"));
 
                 musicas.add(musica);
             }
 
             return musicas;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
 
     public Musica listarPorId(long id) {
-        String sql = "SELECT * FROM Musica WHERE id = ?";
+        String sql = "SELECT * FROM MUSICA WHERE ID = ?";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -93,7 +94,7 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
     @Override
     public void cadastrar(Musica objeto) {
-        String sql = "INSERT INTO Musica (nome, autor) VALUES(?,?);";
+        String sql = "INSERT INTO MUSICA (NOME, AUTOR) VALUES(?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -102,17 +103,17 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
             ps.execute();
 
-            JOptionPane.showMessageDialog(null, "Musica cadastrada com sucesso!");
+            System.out.println("Musica cadastrada com sucesso!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar a Musica. \n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void editar(Musica objeto) {
-        String sql = "UPDATE Musica SET " +
-                "nome = ?,autor = ?" +
-                "WHERE id = ?";
+        String sql = "UPDATE MUSICA SET " +
+                "NOME = ?,AUTOR = ?" +
+                "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getNome());
@@ -120,16 +121,13 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Musica atualizada com sucesso");
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar Musica. \n" + e.getMessage());
-        }
+            e.printStackTrace();        }
     }
 
     @Override
     public void excluir(Musica objeto) {
-        String sql = "DELETE FROM Musica WHERE id = ? ";
+        String sql = "DELETE FROM MUSICA WHERE ID = ? ";
         try {
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -138,12 +136,12 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
             int rowCount = ps.executeUpdate();
 
             if (rowCount > 0) {
-                JOptionPane.showMessageDialog(null, "Musica excluida com sucesso!");
+                System.out.println("Musica excluida com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(null, "Musica não encontrada com o id fornecido.");
+                System.out.println("Musica não encontrada com o id fornecido.");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar Musica.\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
