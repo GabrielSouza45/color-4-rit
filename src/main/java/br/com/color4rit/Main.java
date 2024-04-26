@@ -23,19 +23,19 @@ public class Main {
         Nota nota1 = new Nota();
         nota1.setId(1L);
         nota1.setCor(Cor.VERMELHO);
-        nota1.setTempo(1.5);
+//        nota1.setTempo();
         nota1.setMapa(mapa1);
 
         Nota nota2 = new Nota();
         nota1.setId(2L);
         nota1.setCor(Cor.AMARELO);
-        nota1.setTempo(1.8);
+//        nota1.setTempo(1.8);
         nota1.setMapa(mapa1);
 
         Nota nota3 = new Nota();
         nota1.setId(3L);
         nota1.setCor(Cor.AZUL);
-        nota1.setTempo(2.0);
+//        nota1.setTempo(2.0);
         nota1.setMapa(mapa1);
 
         ConectarDao dao = new ConectarDao();

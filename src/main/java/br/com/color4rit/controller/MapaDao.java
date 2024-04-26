@@ -26,7 +26,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
     @Override
     public Mapa listarPorId(long idMapa) {
 
-        String sql = "SELECT * FROM mapa WHERE id = ?";
+        String sql = "SELECT * FROM MAPA WHERE id = ?";
 
         try {
 
@@ -39,9 +39,11 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
             if (rs.next()) {
                 Mapa mapa = new Mapa();
-                mapa.setId(rs.getLong("id"));
-                mapa.setMusica(new Musica("Loretta", "Ginger Root", 1L));
-                mapa.setDificuldade(Dificuldade.valueOf(rs.getString("dificuldade")));
+                mapa.setId(rs.getLong("ID"));
+                mapa.setDificuldade(Dificuldade.valueOf(rs.getString("DIFICULDADE")));
+                mapa.setMusica(
+                        new MusicaDao()
+                                .listarPorId(rs.getLong("FK_MUSICA")));
 
                 return mapa;
             } else {

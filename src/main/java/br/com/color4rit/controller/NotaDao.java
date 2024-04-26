@@ -45,8 +45,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
     }
 
     public List<Nota> listarPorMapa(Mapa mapa){
-        String sql = "SELECT * FROM nota" +
-                " WHERE id_mapa = ?";
+        String sql = "SELECT * FROM NOTA" +
+                " WHERE FK_MAPA = ?";
 
         try {
 
@@ -62,9 +62,9 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             while (rs.next()) {
 
                 Nota nota = new Nota();
-                nota.setId(rs.getLong("id"));
-                nota.setTempo(rs.getDouble("tempo"));
-                nota.setCor(Cor.valueOf(rs.getString("cor")));
+                nota.setId(rs.getLong("ID"));
+                nota.setTempo(rs.getTime("TEMPO"));
+                nota.setCor(Cor.valueOf(rs.getString("COR")));
                 nota.setMapa(mapa);
 
                 notas.add(nota);

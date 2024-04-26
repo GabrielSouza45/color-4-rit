@@ -2,12 +2,14 @@ package br.com.color4rit.model;
 
 import br.com.color4rit.enums.Cor;
 
+import java.sql.Time;
+
 public class Nota {
 
     private Long id;
     private Mapa mapa;
     private Cor cor;
-    private Double tempo;
+    private Time tempo;
 
     public Long getId() {
         return id;
@@ -33,11 +35,11 @@ public class Nota {
         this.cor = cor;
     }
 
-    public Double getTempo() {
+    public Time getTempo() {
         return tempo;
     }
 
-    public void setTempo(Double tempo) {
+    public void setTempo(Time tempo) {
         this.tempo = tempo;
     }
 

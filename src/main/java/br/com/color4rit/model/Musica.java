@@ -1,11 +1,13 @@
 package br.com.color4rit.model;
 
 import java.sql.Blob;
+import java.sql.Time;
 
 public class Musica {
 
     private String nome;
     private String autor;
+    private Time duracao;
     private Long id;
     private Blob musica;
 
@@ -51,6 +53,14 @@ public class Musica {
         this.autor = autor;
     }
 
+
+    public Time getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(Time duracao) {
+        this.duracao = duracao;
+    }
 
     @Override
     public String toString() {

@@ -37,6 +37,7 @@ public class GetNotas extends HttpServlet {
         // Escrever o JSON na resposta
         PrintWriter out = resp.getWriter();
         out.print(json);
+        System.out.println(json.toString());
         out.flush();
     }
 }

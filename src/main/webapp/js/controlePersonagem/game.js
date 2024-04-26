@@ -13,7 +13,6 @@ setInterval(()=>{
     ctx.clearRect(0,0,350,350)
 
     jogador.update()
-
     
 })
 
