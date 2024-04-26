@@ -64,6 +64,32 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
         }
     }
 
+    public Jogador listarPorLogin(String login) {
+        String sql = "SELECT * FROM JOGADOR WHERE LOGIN = ?";
+
+        try {
+
+            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            ps.setString(1, login);
+
+            ResultSet res = ps.executeQuery();
+
+            Jogador objeto = new Jogador();
+
+            if (res.next()){
+                objeto.setId(res.getLong("ID"));
+                objeto.setNome(res.getString("NOME"));
+                objeto.setLogin(res.getString("LOGIN"));
+                objeto.setSenha(res.getString("SENHA"));
+                return objeto;
+            }
+
+            return null;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     public Jogador listarPorId(long id) {
         String sql = "SELECT * FROM JOGADOR WHERE ID = ?";
 
