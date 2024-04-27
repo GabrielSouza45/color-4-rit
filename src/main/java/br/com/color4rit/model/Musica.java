@@ -7,7 +7,7 @@ public class Musica {
 
     private String nome;
     private String autor;
-    private Time duracao;
+    private int duracao;
     private Long id;
     private Blob musica;
 
@@ -54,11 +54,11 @@ public class Musica {
     }
 
 
-    public Time getDuracao() {
+    public int getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Time duracao) {
+    public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
 
