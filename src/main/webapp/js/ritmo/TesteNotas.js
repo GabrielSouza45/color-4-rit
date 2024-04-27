@@ -1,40 +1,32 @@
-import Nota from "./Non.js";
+import Nota from "./classes/Non.js";
 
-const element = document.getElementById("botao-registrar");
-element.addEventListener("click", getNotas);
+export function getNotas() {
+  const idMapa = document.getElementById("id-mapa");
+  console.log("Entrou no gatNotas()");
 
-function getNotas() {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `id-mapa=${idMapa.value}`,
+  };
 
-    const idMapa = document.getElementById('id-mapa');
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `id-mapa=${idMapa.value}`
-    };
-
-    fetch('/get-notas', requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao obter as notas');
-            }
-            return response.json();
-        })
-        .then(notas => {
-            // Manipular os dados das notas aqui
-            console.log('Notas recebidas:', notas);
-            // Criar objeto JS modular para cada nota
-            const notasModulares = notas.map(nota => {
-                return new Nota(nota.id, nota.cor, nota.tempo, nota.mapa)
-            });
-            console.log('Notas modulares:', notasModulares);
-            // Fazer algo mais com as notas modulares, como passá-las para um outro módulo JS
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
+  return fetch("/get-notas", requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao obter a nota");
+      }
+      return response.json();
+    })
+    .then((notas) => {
+      console.log("Notas .then: ", notas);
+      return notas.map((nota) => {
+        return new Nota(nota.id, nota.cor, nota.tempo, nota.mapa);
+      });
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+      return []; // Retorna uma lista vazia em caso de erro
+    });
 }
-
-

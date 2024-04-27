@@ -46,7 +46,10 @@ const jogador = new Sprite({
 		width:50,
 		height:50
 		
-	}})
+	}
+})
+
+
 	
 	
 	
