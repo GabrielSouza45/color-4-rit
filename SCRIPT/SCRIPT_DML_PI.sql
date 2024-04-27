@@ -1,63 +1,68 @@
 USE color4rit;
 
-SELECT * FROM jogador;
 
-INSERT INTO jogador (nome, login, senha)
-VALUES ('admin', 'admin@admin.com', 'color#1234');
+SELECT * FROM JOGADOR;
 
-
-SELECT * FROM musica;
-
-INSERT INTO musica (duracao, nome, autor)
-VALUES ('00:02:55','tropa do kusterverso', 'loren tralha');
+INSERT INTO JOGADOR (NOME, LOGIN, SENHA) 
+VALUES ('Admin', 'admin@admin.com', 'color#1234');
 
 
-SELECT * FROM mapa;
+SELECT * FROM MUSICA;
 
-INSERT INTO mapa (dificuldade, fk_musica)
-VALUES ('facil', 1);
-
-
-SELECT * FROM nota;
-
-INSERT INTO nota (fk_mapa, cor, tempo)
-VALUES (1, 'azul', '00:00:15');
+INSERT INTO MUSICA (DURACAO, NOME, AUTOR) 
+VALUES (12000,'Loretta', 'Ginger Root');
 
 
-SELECT * FROM placar;
+SELECT * FROM MAPA;
 
-INSERT INTO placar (pontuacao, fk_jogador, fk_musica)
+INSERT INTO MAPA (DIFICULDADE, FK_MUSICA) 
+VALUES ('FACIL', 1);
+
+
+SELECT * FROM NOTA;
+SELECT * FROM NOTA WHERE STATUS = 1; -- pega apenas valores ativos
+
+INSERT INTO NOTA (FK_MAPA, COR, TEMPO, STATUS) 
+VALUES (1, 'VERMELHO', 12000, 1);
+
+
+SELECT * FROM PLACAR;
+
+INSERT INTO PLACAR (PONTUACAO, FK_JOGADOR, FK_MUSICA) 
 VALUES (300, 1, 1);
 
 
+UPDATE NOTA
+SET STATUS = 0
+WHERE ID = 3;
 
-UPDATE musica 
-SET nome = 'nova musica' 
-WHERE id = 1;
+UPDATE MUSICA 
+SET NOME = 'Loretta',
+AUTOR = 'Ginger Root'
+WHERE ID = 1;
 
-UPDATE placar 
-SET pontuacao = 400 
-WHERE id = 1;
+UPDATE PLACAR 
+SET PONTUACAO = 400 
+WHERE ID = 1;
 
-UPDATE jogador 
-SET nome = 'novo nome' 
-WHERE id = 1;
+UPDATE JOGADOR 
+SET NOME = 'Novo Nome' 
+WHERE ID = 1;
 
-UPDATE mapa
-SET dificuldade = 'nova dificuldade'
-WHERE id = 1;
+UPDATE MAPA
+SET DIFICULDADE = 'NOVA DIFICULDADE'
+WHERE ID = 1;
 
-DELETE FROM musica 
-WHERE id = 1;
+DELETE FROM MUSICA WHERE ID = 1;
 
-DELETE FROM nota 
-WHERE id = 1;
+DELETE FROM NOTA 
+WHERE ID = 1;
 
-DELETE FROM mapa 
-WHERE id = 1;
+DELETE FROM MAPA 
+WHERE ID = 1;
 
-DELETE FROM placar 
-WHERE id = 1;
+DELETE FROM PLACAR 
+WHERE ID = 1;
 
-DELETE FROM Jogador 
-WHERE id = 1;
+DELETE FROM JOGADOR 
+WHERE ID = 1;
