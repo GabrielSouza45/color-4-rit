@@ -67,7 +67,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
 
     public Mapa listarPorId(long id) {
 
-        String sql = "SELECT * FROM mapa WHERE ID = ?";
+        String sql = "SELECT * FROM MAPA WHERE ID = ?";
 
         try {
 

@@ -5,7 +5,6 @@ import br.com.color4rit.model.Mapa;
 import br.com.color4rit.model.Nota;
 import br.com.color4rit.repository.CrudDao;
 
-import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

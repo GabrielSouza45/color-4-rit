@@ -53,6 +53,7 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
                 musica.setId(rs.getLong("ID"));
                 musica.setNome(rs.getString("NOME"));
                 musica.setAutor(rs.getString("AUTOR"));
+                musica.setDuracao(rs.getInt("DURACAO"));
 
                 musicas.add(musica);
             }
@@ -79,7 +80,7 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
                 musica.setId(res.getLong("ID"));
                 musica.setNome(res.getString("NOME"));
                 musica.setAutor(res.getString("AUTOR"));
-                musica.setDuracao(res.getTime("DURACAO"));
+                musica.setDuracao(res.getInt("DURACAO"));
 
                 return musica;
             } else {
@@ -94,12 +95,13 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
 
     @Override
     public void cadastrar(Musica objeto) {
-        String sql = "INSERT INTO MUSICA (NOME, AUTOR) VALUES(?,?);";
+        String sql = "INSERT INTO MUSICA (NOME, AUTOR, DURACAO) VALUES(?,?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, (objeto.getNome()));
             ps.setString(2, objeto.getAutor());
+            ps.setInt(3, objeto.getDuracao());
 
             ps.execute();
 
@@ -112,12 +114,13 @@ public class MusicaDao extends ConectarDao implements CrudDao<Musica> {
     @Override
     public void editar(Musica objeto) {
         String sql = "UPDATE MUSICA SET " +
-                "NOME = ?,AUTOR = ?" +
+                "NOME = ?,AUTOR = ?,DURACAO=?" +
                 "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getNome());
             ps.setString(2, objeto.getAutor());
+            ps.setInt(3, objeto.getDuracao());
 
             ps.executeUpdate();
 
