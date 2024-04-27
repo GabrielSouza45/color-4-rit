@@ -20,7 +20,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
                 "  `ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                 "  `FK_MAPA` BIGINT UNSIGNED,\n" +
                 "  `COR` VARCHAR(50),\n" +
-                "  `TEMPO` TIME,\n" +
+                "  `TEMPO` INT,\n" +
+                "  `STATUS` INT,\n" +
                 "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)";
 
         PreparedStatement ps = null;
@@ -52,7 +53,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
                 notinha.setId(res.getLong("ID"));
                 notinha.setCor(Cor.valueOf(res.getString("COR")));
-                notinha.setTempo(res.getTime("TEMPO"));
+                notinha.setTempo(res.getInt("TEMPO"));
+                notinha.setStatus(res.getInt("STATUS"));
                 notinha.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
 
                 notas.add(notinha);
@@ -81,7 +83,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
             if (res.next()) {
                 nota.setId(res.getLong("ID"));
                 nota.setCor(Cor.valueOf(res.getString("COR")));
-                nota.setTempo(res.getTime("TEMPO"));
+                nota.setTempo(res.getInt("TEMPO"));
+                nota.setStatus(res.getInt("STATUS"));
                 nota.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
 
                 return nota;
@@ -96,13 +99,14 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
     }
     @Override
     public void cadastrar(Nota objeto) {
-        String sql = "INSERT INTO NOTA (COR, TEMPO, FK_MAPA) VALUES(?,?,?);";
+        String sql = "INSERT INTO NOTA (COR, TEMPO, STATUS, FK_MAPA) VALUES(?,?,?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, String.valueOf(objeto.getCor()));
-            ps.setTime(2, objeto.getTempo());
-            ps.setLong(3, objeto.getMapa().getId());
+            ps.setInt(2, objeto.getTempo());
+            ps.setInt(3, objeto.getStatus());
+            ps.setLong(4, objeto.getMapa().getId());
 
             ps.execute();
         } catch (SQLException e) {
@@ -113,13 +117,14 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
     @Override
     public void editar(Nota objeto) {
         String sql = "UPDATE NOTA SET " +
-                "COR = ?, TEMPO = ?, FK_MAPA = ?" +
+                "COR = ?, TEMPO = ?, FK_MAPA = ?, STATUS = ?" +
                 "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setString(1, String.valueOf(objeto.getCor()));
-            ps.setTime(2, objeto.getTempo());
+            ps.setInt(2, objeto.getTempo());
             ps.setLong(3, objeto.getMapa().getId());
+            ps.setLong(4, objeto.getStatus());
 
             ps.executeUpdate();
 
@@ -130,7 +135,7 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
     @Override
     public void excluir(Nota objeto) {
-        String sql = "DELETE FROM NOTA WHERE ID = ? ";
+        String sql = "UPDATE NOTA SET STATUS = 0 WHERE ID = ?";
         try {
 
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
@@ -150,8 +155,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
     public List<Nota> listarPorMapa(Mapa mapa){
         String sql = "SELECT * FROM NOTA" +
-                " WHERE FK_MAPA = ?" +
-                " ORDER BY TEMPO";
+                " WHERE FK_MAPA = ? AND STATUS = 1" +
+                " ORDER BY TEMPO ASC";
 
         try {
 
@@ -168,7 +173,8 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
 
                 Nota nota = new Nota();
                 nota.setId(rs.getLong("ID"));
-                nota.setTempo(rs.getTime("TEMPO"));
+                nota.setTempo(rs.getInt("TEMPO"));
+                nota.setStatus(rs.getInt("STATUS"));
                 nota.setCor(Cor.valueOf(rs.getString("COR")));
                 nota.setMapa(mapa);
 

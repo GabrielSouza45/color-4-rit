@@ -9,7 +9,8 @@ public class Nota {
     private Long id;
     private Mapa mapa;
     private Cor cor;
-    private Time tempo;
+    private int tempo;
+    private int status;
 
     public Long getId() {
         return id;
@@ -35,12 +36,20 @@ public class Nota {
         this.cor = cor;
     }
 
-    public Time getTempo() {
+    public int getTempo() {
         return tempo;
     }
 
-    public void setTempo(Time tempo) {
+    public void setTempo(int tempo) {
         this.tempo = tempo;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
