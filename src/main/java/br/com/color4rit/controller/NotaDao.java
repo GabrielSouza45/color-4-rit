@@ -153,6 +153,28 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
         }
     }
 
+
+    public int excluirPorMapa(Long idMapa) {
+        String sql = "UPDATE NOTA SET STATUS = 0 WHERE FK_MAPA = ?";
+        try {
+
+            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            ps.setLong(1, idMapa);
+
+            int rowCount = ps.executeUpdate();
+
+            if (rowCount > 0) {
+                System.out.println("Notas excluidas com sucesso!");
+            } else {
+                System.out.println("Nota não encontrada com o id fornecido.");
+            }
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public List<Nota> listarPorMapa(Mapa mapa){
         String sql = "SELECT * FROM NOTA" +
                 " WHERE FK_MAPA = ? AND STATUS = 1" +

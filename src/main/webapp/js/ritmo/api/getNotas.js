@@ -1,15 +1,17 @@
 import Nota from "../model/Nota.js";
 
-export function getNotas() {
-  const idMapa = document.getElementById("id-mapa");
-  console.log("Entrou no getNotas()");
+export function getNotas(idMapa) {
+  if (idMapa == null) {
+    idMapa = document.getElementById("id-mapa").value;
+  }
+  console.log("Entrou no getNotas() ", idMapa);
 
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: `id-mapa=${idMapa.value}`,
+    body: `id-mapa=${idMapa}`,
   };
 
   return fetch("/get-notas", requestOptions)
@@ -22,7 +24,7 @@ export function getNotas() {
     .then((notas) => {
       console.log("Notas .then: ", notas);
       return notas.map((nota) => {
-        return new Nota(nota.id, nota.cor, nota.tempo, nota.mapa);
+        return new Nota(nota.id, nota.cor, nota.tempo, nota.mapa, nota.status);
       });
     })
     .catch((error) => {

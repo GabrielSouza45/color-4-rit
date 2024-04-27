@@ -6,9 +6,11 @@ C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\s
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\Main.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\MapaDao.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\NotaDao.java
+C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\DeleteNotas.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\repository\CrudDao.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Musica.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\PlacarDao.java
+C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\AdicionarNotas.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\GetMapa.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\enums\Dificuldade.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Nota.java
@@ -16,3 +18,4 @@ C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\c
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Jogador.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\JogadorDao.java
 C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\MusicaDao.java
+C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\ListNotas.java

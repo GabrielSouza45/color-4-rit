@@ -1,26 +1,107 @@
+import { addNotas } from "./api/addNotas.js";
+import { deleteNotas } from "./api/deleteNotas.js";
 import { getMapa } from "./api/getMapa.js";
+import { getNotas } from "./api/getNotas.js";
+import Nota from "./model/Nota.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 
 const element = document.getElementById("iniciar-gravacao");
-element.addEventListener('click', () => {
+element.addEventListener('click', async () => {
 
- setTimeout( // Adiciona um atraso de 5 segundos para iniciar a musica
-    async () => {
+    const confirm = window.confirm("Se continuar, excluirá todas as notas já registradas!");
 
-        console.log("Entrou notas");
-        const inputMapa = document.getElementById("id-mapa");
-        const mapa = await getMapa(inputMapa.value);
+    if(!confirm) {
+        return;
+    }
+        
+    const timer = 5000;
 
-        const musica = mapa.musica;
-        const musicaNome = musica.nome;
-        const musicaDuracao = musica.duracao;
+    setTimeout( // Adiciona um atraso de 5 segundos para iniciar a musica
+        async () => {
+        
 
-        const audio = new Audio(`../audio/${musicaNome}.mp3`)
-        audio.play();
+            let teclasPressionadas = [];
+            let listNotas = [];
+            let idMapa;
+            let musicaDuracao;
+            let mapa;
 
-        getTeclasPressionadas(musicaDuracao);
+            console.log("Entrou notas");
+            const inputMapa = document.getElementById("id-mapa");
+            idMapa = inputMapa.value;
+            mapa = await getMapa(idMapa);
+        
+            const musica = mapa.musica;
+            const musicaNome = musica.nome;
+            musicaDuracao = musica.duracao;
+        
+            const audio = new Audio(`../audio/${musicaNome}.mp3`)
+            audio.play();
+        
+            teclasPressionadas = getTeclasPressionadas(musicaDuracao, audio);
+        
 
-    } , 5000);
+            setTimeout( 
+                async () => {
+                    console.log("AVANCOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ", idMapa);
+
+                    await getNotas(idMapa)
+                    .then((notas) => {
+                        listNotas = notas;
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        throw new Error(err);
+                    })
+
+                    if (listNotas.length > 0) {
+                        await deleteNotas(idMapa);
+                    } 
+                    let listaPressionados = [];
+
+                    console.log(teclasPressionadas);
+
+                    try {
+                        teclasPressionadas.forEach(press => {
+                        console.log("entrou");
+                        console.log(press);
+                            let cor;
+                        
+                            const tecla = press.tecla;
+                            const tempo = press.tempo;
+                        
+                            switch (tecla) {
+                                case 'a':
+                                    cor = 'VERMELHO'
+                                    break;
+                                case 'w':
+                                    cor = 'AZUL'
+                                    break;
+                                case 's':
+                                    cor = 'VERDE'
+                                    break;   
+                                case 'd':
+                                    cor = 'AMARELO'
+                                    break;   
+                                default:
+                                    cor = 'VERMELHO'
+                                    break;  
+                            }
+                        
+                            listaPressionados.push(new Nota(0, cor, tempo, 1, mapa))
+                        
+                        });
+                    } catch (err) {
+                        throw new Error(err);
+                    }
+                    
+                    addNotas(listaPressionados);
+
+                }, musicaDuracao+2000
+            );
+
+        }, timer
+    );
     
 });
 

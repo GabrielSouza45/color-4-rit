@@ -1,19 +1,14 @@
 import Mapa from "../model/Mapa.js";
+import { requestHeader } from "../service/requestPost.js";
 
 export function getMapa(idMapa) {
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `id-mapa=${idMapa}`,
-    };
 
+    const requestOptions = requestHeader(`id-mapa=${idMapa}`);
 
     return fetch('/get-mapa', requestOptions)
         .then((response) => {
             if (!response.ok) {
-                throw new Error("Erro ao obter a nota");
+                throw new Error("Erro ao obter o mapa");
             }
             return response.json();
         })
