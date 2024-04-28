@@ -3,7 +3,7 @@ import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 
 
-const element = document.getElementById("botao-registrar");
+const element = document.getElementById("iniciar-jogo");
 element.addEventListener("click", async function () {
   console.log("Entrou aqui em");
 
@@ -13,13 +13,13 @@ element.addEventListener("click", async function () {
   // Notas
   let listNotas = [];
   let teclasPressionadas = [];
-  let listTempos = [];
 
   // Cores
   const vermelho = document.getElementById("vermelho");
   const verde = document.getElementById("verde");
   const azul = document.getElementById("azul");
   const amarelo = document.getElementById("amarelo");
+  const telaProximaCor = document.getElementById("tela-proxima-nota");
 
   
   // Pega notas no banco de dados
@@ -27,7 +27,6 @@ element.addEventListener("click", async function () {
     .then((notas) => {
       console.log("Notas DB:", notas);
       listNotas = notas;
-      listTempos = notas;
       
     })
     .catch((error) => {
@@ -36,7 +35,6 @@ element.addEventListener("click", async function () {
       alert(msg);
       throw new Error(msg);
     });
-    console.log("Lista Tempos:", listTempos);
 
     if (listNotas.length === 0) {
       alert("Música sem notas configuradas.");
@@ -52,6 +50,9 @@ element.addEventListener("click", async function () {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
+  setProximaCor(listNotas[0].cor.toLowerCase());
+
+  // Inicia Jogo
   setTimeout(() => {
     
     const audio = new Audio(`../audio/${musicaNome}.mp3`)
@@ -63,22 +64,30 @@ element.addEventListener("click", async function () {
     let count = 0;
 
     const set = setInterval(() => {
-      if (listTempos.length != count) {
+      if (listNotas.length != count) {
         console.log("set");
 
-        const tempo = listTempos[count].tempo;
+        const tempo = listNotas[count].tempo;
         console.log("/");
         console.log(tempo);
         console.log(Date.now() - tempoInicio);
         console.log("\\");
 
+      
         const aux = Date.now() - tempoInicio;
         if (tempo >= (aux - 10) && tempo <= (aux + 10)) {
 
-          console.log("Executando trocas");
+          if(count < listNotas.length-1) {
 
+            const proximoTempo = listNotas[count+1].tempo;
+            const tempoRestante = proximoTempo - tempo; 
 
-          const cor = listTempos[count].cor.toLowerCase();;
+            setProximaCor(listNotas[count+1].cor.toLowerCase(), tempoRestante);
+            console.log("Executando trocas");
+
+          }
+
+          const cor = listNotas[count].cor.toLowerCase();;
           console.log(cor);
 
           resetaCores();
@@ -99,32 +108,34 @@ element.addEventListener("click", async function () {
     }, 0);
     
 
-
-
-
-
     // Averiguacao de pontos
     setTimeout(() => {
+      console.log(listNotas);
+      console.log(teclasPressionadas);
 
         let pontos = 0;
-        const margem = 50;
+        const margem = 100;
 
         listNotas.forEach((nota) => {
 
           teclasPressionadas.forEach((press) => {
             const tempoPress = press.tempo;
             const tempoNota = nota.tempo;
+            const corPress = getNotaCor(press.tecla);
+            const corNota = nota.cor;
+
 
             if(tempoPress >= (tempoNota-margem) && tempoPress <= (tempoNota+margem)) {
-              console.log("tempoPress-> ", tempoPress, "tempoNota-> ", tempoNota);
-              pontos+=1;
+              if(corPress === corNota) {
+                console.log("tempoPress-> ", tempoPress, "tempoNota-> ", tempoNota);
+                pontos+=1;
+              }
             }
-
           });
-
         });
 
         console.log("Pontos: ", pontos);
+        alert (`Jogo finalizado, total de ponto: ${pontos}!`);
     }, musicaDuracao+2000);
 
 
@@ -138,6 +149,44 @@ element.addEventListener("click", async function () {
 
     }
 
+   
+
   }, 2000);
+
+  function setProximaCor(proximaCor, tempo) {
+    console.log("Setando proxima cor: ", `var(--${proximaCor})`);
+    telaProximaCor.style.background = `var(--${proximaCor})`;
+
+    const proximoQuadrado = document.getElementById(proximaCor);
+    proximoQuadrado.style.transitionDuration = tempo + 'ms';
+    proximoQuadrado.style.backgroundColor = `var(--${proximaCor})`;
+  }
+
+  function getNotaCor(tecla) {
+
+    let cor;
+    switch (tecla) {
+      case 'a':
+          cor = 'VERMELHO'
+          break;
+      case 'w':
+          cor = 'AZUL'
+          break;
+      case 's':
+          cor = 'VERDE'
+          break;   
+      case 'd':
+          cor = 'AMARELO'
+          break;   
+      default:
+          cor = 'ERRADO'
+          break;  
+    }
+    return cor;
+
+  }
+    
+
+  
 });
 

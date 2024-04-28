@@ -4,39 +4,164 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/areaDeJogo.css">
-    <title>Teste de Notas</title>
+    <script src="https://kit.fontawesome.com/59ad2e0463.js" crossorigin="anonymous"></script>    <title>Color 4 Rit</title>
+    <script type="module" src="js/ritmo/jogo.js"></script>
 </head>
 
 <body>
 
     <div class="container">
         <div class="lateral-esquerda">
+
+            <div class="icon">
+                <a href="./index.html" >
+                    <i class='fas fa-angle-left' ></i>
+                    Voltar
+                </a>
+            </div>
+
+            <div class="icon reiniciar">
+                <button id="iniciar-jogo">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    Reiniciar musica
+                </button>
+                    
+              
+            </div>
+
             <form method="post">
 
                 <label>Id do Mapa:</label>
                 <input type="text" name="id-mapa" id="id-mapa">
 
-                <button type="button" onclick="" id="botao-registrar"> Registrar </button>
+                <button type="button" onclick="" id="iniciar-jogo"> Iniciar Jogo </button>
 
 
             </form>
 
             <div class="area-game">
                 <div class="area-principal">
-                    <div class="quadrado vermelho" id="vermelho"></div>
-                    <div class="quadrado verde" id="verde"></div>
-                    <div class="quadrado azul" id="azul"></div>
-                    <div class="quadrado amarelo" id="amarelo"></div>
+
+                    <div class="quadrado vermelho" id="vermelho">
+                        <h3 id="tecla-vermelho">A</h3>
+                    </div>
+
+                    <div class="quadrado verde" id="verde">
+                        <h3 id="tecla-verde">S</h3>
+                    </div>
+
+                    <div class="quadrado azul" id="azul">
+                        <h3 id="tecla-azul">W</h3>
+                    </div>
+
+                    <div class="quadrado amarelo" id="amarelo">
+                        <h3 id="tecla-amarelo">D</h3>
+                    </div>
+
                 </div>
             </div>
         </div>
 
         <div class="lateral-direita">
+            <div class="recuo">
+                <div class="proxima-nota">
+                    <h2>PROXIMA NOTA</h2>
+                    <div id="tela-proxima-nota" class="tela-proxima-nota">
 
+                    </div>
+                </div>
+
+                <div class="score">
+                    <div class="menu-score">
+                        <div class="titulo">
+                            <h2>Melhores Jogadores</h2>
+
+                        </div>
+                        <div class="jogadores">
+
+                            <div class="capsula">
+                                <div class="jogador" id="jogador1">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao1">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador2">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao2">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador3">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao3">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador4">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao4">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador5">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao5">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador6">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao6">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador" id="jogador7">
+                                    <h3>Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao" id="pontuacao7">
+                                    <h3>000</h3>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script type="module" src="js/ritmo/jogo.js"></script>
 
 </body>
 
