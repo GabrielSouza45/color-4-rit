@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/areaDeJogo.css">
     <title>Teste de Notas</title>
 </head>
+
 <body>
 
+    <div class="container">
+        <div class="lateral-esquerda">
+            <form method="post">
 
-<form method="post">
+                <label>Id do Mapa:</label>
+                <input type="text" name="id-mapa" id="id-mapa">
 
-    <label>Id do Mapa:</label>
-    <input type="text" name="id-mapa" id="id-mapa">
-
-    <button type="button" onclick="" id="botao-registrar"> Registrar </button>
+                <button type="button" onclick="" id="botao-registrar"> Registrar </button>
 
 
-</form>
+            </form>
+
+            <div class="area-game">
+                <div class="area-principal">
+                    <div class="quadrado vermelho" id="vermelho"></div>
+                    <div class="quadrado verde" id="verde"></div>
+                    <div class="quadrado azul" id="azul"></div>
+                    <div class="quadrado amarelo" id="amarelo"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lateral-direita">
+
+        </div>
+    </div>
 
     <script type="module" src="js/ritmo/jogo.js"></script>
 
 </body>
+
 </html>

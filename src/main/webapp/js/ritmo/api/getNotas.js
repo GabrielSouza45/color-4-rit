@@ -1,4 +1,5 @@
 import Nota from "../model/Nota.js";
+import { requestHeader } from "../service/requestPost.js";
 
 export function getNotas(idMapa) {
   if (idMapa == null) {
@@ -6,13 +7,7 @@ export function getNotas(idMapa) {
   }
   console.log("Entrou no getNotas() ", idMapa);
 
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `id-mapa=${idMapa}`,
-  };
+  const requestOptions = requestHeader(`id-mapa=${idMapa}`);
 
   return fetch("/get-notas", requestOptions)
     .then((response) => {
@@ -24,7 +19,7 @@ export function getNotas(idMapa) {
     .then((notas) => {
       console.log("Notas .then: ", notas);
       return notas.map((nota) => {
-        return new Nota(nota.id, nota.cor, nota.tempo, nota.mapa, nota.status);
+        return new Nota(nota.id, nota.cor, nota.tempo, nota.status, nota.mapa);
       });
     })
     .catch((error) => {

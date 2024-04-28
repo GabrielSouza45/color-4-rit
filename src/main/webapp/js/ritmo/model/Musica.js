@@ -4,6 +4,7 @@ class Musica {
         this.nome = nome,
         this.autor = autor,
         this.duracao = duracao
+        console.log("Musica");
     }
 }
 

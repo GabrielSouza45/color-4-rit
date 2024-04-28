@@ -6,6 +6,7 @@ class Mapa {
         this.dificuldade = dificuldade,
         this.musica = new Musica(musica.id, musica.nome, musica.autor, musica.duracao)
 
+        console.log("Mapa");
     }
 };
 
