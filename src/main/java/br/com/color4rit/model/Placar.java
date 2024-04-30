@@ -7,17 +7,27 @@ public class Placar {
     private int pontuacao;
 
     private Jogador jogador;
-    private Musica musica;
+    private Mapa mapa;
+    private Long idMapa;
+    private Long idJogador;
 
-
-
-    public Musica getMusica() {
-        return musica;
+    public Long getIdMapa() {
+        return idMapa;
     }
 
-    public void setMusica(Musica musica) {
-        this.musica = musica;
+    public void setIdMapa(Long idMapa) {
+        this.idMapa = idMapa;
     }
+
+    public Long getIdJogador() {
+        return idJogador;
+    }
+
+    public void setIdJogador(Long idJogador) {
+        this.idJogador = idJogador;
+    }
+
+
 
     public Jogador getJogador() {
         return jogador;
@@ -43,13 +53,22 @@ public class Placar {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Mapa getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(Mapa mapa) {
+        this.mapa = mapa;
+    }
+
     @Override
     public String toString() {
         return "Rank{" +
                 "id=" + id +
                 ", pontuacao=" + pontuacao +
                 ", jogador=" + jogador +
-                ", musica=" + musica +
+                ", musica=" + mapa +
                 '}';
     }
 }
