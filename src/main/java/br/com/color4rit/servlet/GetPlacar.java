@@ -2,6 +2,7 @@ package br.com.color4rit.servlet;
 
 import br.com.color4rit.controller.PlacarDao;
 import br.com.color4rit.model.Placar;
+import br.com.color4rit.model.PlacarRequest;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -20,9 +21,10 @@ public class GetPlacar extends HttpServlet {
         BufferedReader reader = req.getReader();
         String json = reader.readLine();
         Gson gson = new Gson();
-        Placar placar = gson.fromJson(json,Placar.class);
+        PlacarRequest placarReq = gson.fromJson(json, PlacarRequest.class);
 
-        placar = new PlacarDao().listarPorJogador(placar.getIdJogador(), placar.getIdMapa());
+        System.out.println("1 -> " + placarReq);
+        Placar placar = new PlacarDao().listarPorJogador(placarReq.getIdJogador(), placarReq.getIdMapa());
 
         if (placar == null){
             resp.setStatus(404);
@@ -34,6 +36,7 @@ public class GetPlacar extends HttpServlet {
 
             PrintWriter out = resp.getWriter();
             String jsonRespos = gson.toJson(placar);
+            System.out.println("2 -> " + jsonRespos);
             out.print(jsonRespos);
             out.flush();
             System.out.println(jsonRespos);

@@ -124,6 +124,8 @@ form * {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s background-color ease;
+
 }
 
 .quadrado h3 {
@@ -135,10 +137,6 @@ form * {
   border: 1px solid var(--vermelho);
   background-color: var(--vermelho-background);
   border-radius: 15px 0px 0px 0px;
-}
-
-.mudar-cor{
-    transition: background-color ease;
 }
 
 .verde {

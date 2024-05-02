@@ -8,25 +8,6 @@ public class Placar {
 
     private Jogador jogador;
     private Mapa mapa;
-    private Long idMapa;
-    private Long idJogador;
-
-    public Long getIdMapa() {
-        return idMapa;
-    }
-
-    public void setIdMapa(Long idMapa) {
-        this.idMapa = idMapa;
-    }
-
-    public Long getIdJogador() {
-        return idJogador;
-    }
-
-    public void setIdJogador(Long idJogador) {
-        this.idJogador = idJogador;
-    }
-
 
 
     public Jogador getJogador() {

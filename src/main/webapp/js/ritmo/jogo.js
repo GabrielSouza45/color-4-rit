@@ -15,6 +15,13 @@ let set;
 
 let idMapa;
 
+// Cores
+const vermelho = document.getElementById("vermelho");
+const verde = document.getElementById("verde");
+const azul = document.getElementById("azul");
+const amarelo = document.getElementById("amarelo");
+const telaProximaCor = document.getElementById("tela-proxima-nota");
+
 const buttonIniciar = document.getElementById("iniciar-jogo");
 buttonIniciar.addEventListener("click", () => {
   const idMapa = document.getElementById("id-mapa").value;
@@ -27,19 +34,13 @@ buttonReiniciar.addEventListener("click", () => {
   audio.pause();
   clearInterval(set);
   clearInterval(averiguaPontos);
+  resetaCores();
 
   iniciarGame();
 });
 
 async function iniciarGame() {
   console.log("Entrou aqui em");
-
-  // Cores
-  const vermelho = document.getElementById("vermelho");
-  const verde = document.getElementById("verde");
-  const azul = document.getElementById("azul");
-  const amarelo = document.getElementById("amarelo");
-  const telaProximaCor = document.getElementById("tela-proxima-nota");
 
   // Pega notas no banco de dados
   await getNotas(idMapa)
@@ -67,7 +68,7 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
-  setProximaCor(listNotas[0].cor.toLowerCase());
+  setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
   setTimeout(() => {
@@ -84,10 +85,10 @@ async function iniciarGame() {
         console.log("set");
 
         const tempo = listNotas[count].tempo;
-        console.log("/");
-        console.log(tempo);
-        console.log(Date.now() - tempoInicio);
-        console.log("\\");
+        // console.log("/");
+        // console.log(tempo);
+        // console.log(Date.now() - tempoInicio);
+        // console.log("\\");
 
         const aux = Date.now() - tempoInicio;
         if (tempo >= aux - 10 && tempo <= aux + 10) {
@@ -99,8 +100,45 @@ async function iniciarGame() {
               listNotas[count + 1].cor.toLowerCase(),
               tempoRestante
             );
-            console.log("Executando trocas");
+            console.log("Executando trocas, Tempo restante: ", tempoRestante);
+          } else {
+            setUltimaCor();
           }
+
+          //
+
+          document.addEventListener('keydown', (event) => {
+            const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
+            const notaAtual = listNotas[count];
+
+            console.log(notaAtual.cor);
+            console.log(teclaPressionada);
+            console.log(verificaTiming(notaAtual));
+            if (notaAtual.cor === teclaPressionada && verificaTiming(notaAtual)) {
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
+
+              const quadrado = document.getElementById(teclaPressionada.toLowerCase());
+              quadrado.style.boxShadow = '0 0 10px white';
+            }
+          });
+          
+          function verificaTiming(nota) {
+            const tempoAtual = Math.floor(audio.currentTime * 1000); 
+            const margem = 100;
+            console.log(nota.tempo);
+            console.log(tempoAtual);
+            return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
+          }
+
+
+
+
+
+
+          //
+
+
+
 
           const cor = listNotas[count].cor.toLowerCase();
           console.log(cor);
@@ -149,27 +187,20 @@ async function iniciarGame() {
           }
         });
       });
+      resetaCores();
 
       console.log("Pontos: ", pontos);
       alert(`Jogo finalizado, total de ponto: ${pontos}!`);
     }, musicaDuracao + 2000);
-
-    function resetaCores() {
-      console.log("ResetaCor");
-      vermelho.style.background = "var(--vermelho-background)";
-      verde.style.background = "var(--verde-background)";
-      azul.style.background = "var(--azul-background)";
-      amarelo.style.background = "var(--amarelo-background)";
-    }
   }, 2000);
 
   function setProximaCor(proximaCor, tempo) {
     console.log("Setando proxima cor: ", `var(--${proximaCor})`);
     telaProximaCor.style.background = `var(--${proximaCor})`;
+  }
 
-    const proximoQuadrado = document.getElementById(proximaCor);
-    proximoQuadrado.style.transitionDuration = tempo + "ms";
-    proximoQuadrado.style.backgroundColor = `var(--${proximaCor})`;
+  function setUltimaCor() {
+    telaProximaCor.style.background = `#000`;
   }
 
   function getNotaCor(tecla) {
@@ -193,4 +224,13 @@ async function iniciarGame() {
     }
     return cor;
   }
+}
+
+function resetaCores() {
+  console.log("ResetaCor");
+
+  vermelho.style.background = "var(--vermelho-background)";
+  verde.style.background = "var(--verde-background)";
+  azul.style.background = "var(--azul-background)";
+  amarelo.style.background = "var(--amarelo-background)";
 }
