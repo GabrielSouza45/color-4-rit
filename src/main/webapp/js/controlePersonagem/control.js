@@ -1,85 +1,48 @@
-const controles = {
-	w :{pressed:false},
-	a :{pressed:false},
-	s :{pressed:false},
-	d :{pressed:false}
-}
-
-const velocidade = 6
-
-window.addEventListener("keydown", teclaPressionada => {
-	let key = teclaPressionada.key.toLowerCase()
-
-	switch(key){
-		case "ArrowUp":
-		case "w":
-			controles.w.pressed = true;
-			 break
-
-		case "ArrowLeft":
+document.addEventListener("DOMContentLoaded", function () {
+	var character = document.querySelector(".character");
+	var character2 = document.querySelector(".character2");
+	var character3 = document.querySelector(".character3");
+	var character4 = document.querySelector(".character4");
+	var areaGame = document.querySelector(".area-game");
+  
+	areaGame.setAttribute("tabindex", "0");
+  
+	areaGame.addEventListener("keydown", function (event) {
+	  var keyPressed = event.key.toLowerCase();
+	  var newClass = "";
+  
+	  switch (keyPressed) {
 		case "a":
-			controles.a.pressed = true;
-			break
-
-		case "ArrowDown":
+		  newClass = "character-vermelho";
+		  character.className = newClass;
+		  character2.className = "";
+		  character3.className = "";
+		  character4.className = "";
+		  break;
 		case "s":
-			controles.s.pressed = true;
-			 break
-
-		case "ArrowRight":
-	    case "d":
-			controles.d.pressed = true;
-			 break
-	 }
-})
-
-window.addEventListener("keyup", teclaSoltada => {
-	let key = teclaSoltada.key.toLowerCase()
-
-	switch(key){
-		case "ArrowUp":
+		  newClass = "character-verde";
+		  character2.className = newClass;
+		  character.className = "";
+		  character3.className = "";
+		  character4.className = "";
+		  break;
 		case "w":
-			controles.w.pressed = false;
-			break
-        
-        case "ArrowLeft":
-        case "a":
-            controles.a.pressed = false;
-            break
-
-        case "ArrowRight":
-        case "d":
-            controles.d.pressed = false;
-            break
-
-		case "ArrowDown":
-		case "s":
-			controles.s.pressed = false;
-			break
-	}
-})
-
-function funcaoDoMovimento(){
-	movimento()
-	
-	function movimento(){
-		jogador.adicionaMovimento.x = 0
-		jogador.adicionaMovimento.y = 0
-
-		if(controles.w.pressed){	
-			jogador.adicionaMovimento.y -= velocidade
-		}
-
-		if(controles.a.pressed){
-			jogador.adicionaMovimento.x -= velocidade
-		}
-
-		if(controles.s.pressed){
-			jogador.adicionaMovimento.y += velocidade
-		}
-
-		if(controles.d.pressed){
-			jogador.adicionaMovimento.x += velocidade
-		}
-	}
-}
+		  newClass = "character-azul";
+		  character3.className = newClass;
+		  character2.className = "";
+		  character.className = "";
+		  character4.className = "";
+		  break;
+		case "d":
+		  newClass = "character-amarelo";
+		  character4.className = newClass;
+		  character2.className = "";
+		  character3.className = "";
+		  character.className = "";
+		  break;
+		default:
+		  return;
+	  }
+	});
+  });
+  

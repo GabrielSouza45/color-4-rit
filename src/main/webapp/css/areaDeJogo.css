@@ -263,3 +263,43 @@ form * {
   align-items: center;
   justify-content: center;
 }
+
+.character-azul {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-vermelho {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-amarelo {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-verde {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%,-50%); 
+}
