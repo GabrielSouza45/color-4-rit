@@ -15,7 +15,6 @@ export function getTeclasPressionadas(duracaoMusica, audio) {
 
 
       const verificarTeclasInterval = setInterval(() => {
-        console.log("--");
         if (Date.now() - tempoInicio >= tempoFinal) {
 
           clearInterval(verificarTeclasInterval); 

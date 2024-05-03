@@ -1,11 +1,15 @@
-import { requestHeader } from "../service/requestPut.js";
+import { requestJson } from "../service/requestPut.js";
 
 export function deleteNotas(idMapa) {
 
-    const requestOptions = requestHeader(`id-mapa=${idMapa}`);
+    const json = JSON.stringify(idMapa);
+    console.log(json);
+
+
+    const requestOptions = requestJson(json);
     const msgErro = "Erro ao deletar notas no Backend.";
 
-    fetch('/delete-notas', requestOptions) 
+    return fetch('/delete-notas', requestOptions) 
         .then((response) => {
 
             if(!response.ok) {
@@ -14,14 +18,13 @@ export function deleteNotas(idMapa) {
             } else {
                 alert("Notas deletadas com sucesso!");
             }
-            return response.json();
 
         })
         .catch((error) => {
 
             console.error(error);
             alert(msgErro);
-            return null;
+            throw new Error(error);
 
         })
 }

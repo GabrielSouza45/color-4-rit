@@ -18,9 +18,9 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         String sql = "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                 "  `PONTUACAO` INT,\n" +
                 "  `FK-JOGADOR` BIGINT UNSIGNED,\n" +
-                "  `FK_MUSICA` BIGINT UNSIGNED,\n" +
+                "  `FK_MAPA` BIGINT UNSIGNED,\n" +
                 "  FOREIGN KEY (`FK_JOGADOR`) REFERENCES `JOGADOR`(`ID`),\n" +
-                "  FOREIGN KEY (`FK_MUSICA`) REFERENCES `MUSICA`(`ID`)\n" +
+                "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)\n" +
                 ");";
 
         PreparedStatement ps = null;
@@ -52,7 +52,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
-                placar.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
+                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
                 placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
                 placars.add(placar);
@@ -67,7 +67,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
 
     public Placar listarPorId(long id) {
-        String sql = "SELECT * FROM Placar WHERE ID = ?";
+        String sql = "SELECT * FROM PLACAR WHERE ID = ?";
 
         try {
             PreparedStatement ps = (PreparedStatement)
@@ -81,7 +81,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             if (res.next()) {
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
-                placar.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
+                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
                 placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
                 return placar;
@@ -96,12 +96,12 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
     }
 
     public void cadastrar(Placar objeto) {
-        String sql = "INSERT INTO PLACAR (PONTUACAO, FK_MUSICA, FK_JOGADOR) VALUES(?,?,?);";
+        String sql = "INSERT INTO PLACAR (PONTUACAO, FK_MAPA, FK_JOGADOR) VALUES(?,?,?);";
 
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getPontuacao());
-            ps.setLong(2, objeto.getMusica().getId());
+            ps.setLong(2, objeto.getMapa().getId());
             ps.setLong(3, objeto.getJogador().getId());
 
             ps.execute();
@@ -113,12 +113,12 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
     public void editar(Placar objeto) {
         String sql = "UPDATE PLACAR SET " +
-                "PONTUACAO = ?, FK_MUSICA = ?, FK_JOGADOR = ?" +
+                "PONTUACAO = ?, FK_MAPA = ?, FK_JOGADOR = ?" +
                 "WHERE ID = ?";
         try {
             PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getPontuacao());
-            ps.setLong(2, objeto.getMusica().getId());
+            ps.setLong(2, objeto.getMapa().getId());
             ps.setLong(3, objeto.getJogador().getId());
 
             ps.executeUpdate();
@@ -147,50 +147,47 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         }
     }
 
-    public List<Placar> listarMusicaPorId(Musica musica) {
-        String sql = "SELECT * FROM ID" +
-                " WHERE ID_MUSICA = ?";
+    public Placar listarPorJogador(Long idJogador, Long idMapa) {
+        String sql = "SELECT * FROM PLACAR" +
+                " WHERE FK_JOGADOR = ? " +
+                " AND FK_MAPA = ?";
 
         try {
 
             PreparedStatement ps = (PreparedStatement)
                     getConexao().prepareStatement(sql);
 
-            ps.setLong(1, musica.getId());
+            ps.setLong(1, idJogador);
+            ps.setLong(2, idMapa);
 
             ResultSet res = ps.executeQuery();
 
-            List<Placar> placars = new ArrayList<>();
+            Placar placar = new Placar();
 
             if (res.next()) {
-                Placar placar = new Placar();
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
-                placar.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
+                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
                 placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
-
-                placars.add(placar);
             }
-
-            return placars;
-
+            return placar;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public List<Placar> listarPorJogador(Jogador jogador) {
+    public List<Placar> listarPorMapa(Mapa mapa) {
         String sql = "SELECT * FROM PLACAR" +
-                " WHERE ID_MUSICA = ?";
+                " WHERE FK_MAPA = ?";
 
         try {
 
             PreparedStatement ps = (PreparedStatement)
                     getConexao().prepareStatement(sql);
 
-            ps.setLong(1, jogador.getId());
+            ps.setLong(1, mapa.getId());
 
             ResultSet res = ps.executeQuery();
 
@@ -200,7 +197,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
                 Placar placar = new Placar();
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
-                placar.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
+                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
                 placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
 

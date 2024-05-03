@@ -55,7 +55,10 @@ element.addEventListener('click', async () => {
                     })
 
                     if (listNotas.length > 0) {
-                        await deleteNotas(idMapa);
+                        await deleteNotas(idMapa)
+                            .catch((err) => {
+                                throw new Error(err);
+                            });
                     } 
                     let listaPressionados = [];
 
