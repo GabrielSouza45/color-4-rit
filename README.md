@@ -4,7 +4,6 @@ Repositório criado para organização e criação do Projeto Integrador do 3º 
 <h3>Integrantes: </h3>
 <ul>
   <li>Antonio Joaquim</li>
-  <li>Everton Luiz</li>
   <li>Gabriel Freitas (Scrum Master)</li>
   <li>Marco Mafra</li>    
   <li>Tadeu Moura (P.O.)</li>
