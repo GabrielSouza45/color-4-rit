@@ -1,5 +1,6 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
+import { atualizaPlacar } from "./service/placar.js";
 
 console.log("Entrou aqui jogo.js");
 
@@ -14,6 +15,7 @@ let averiguaPontos;
 let set;
 
 let idMapa;
+let idJogador;
 
 // Cores
 const vermelho = document.getElementById("vermelho");
@@ -24,7 +26,9 @@ const telaProximaCor = document.getElementById("tela-proxima-nota");
 
 const buttonIniciar = document.getElementById("iniciar-jogo");
 buttonIniciar.addEventListener("click", () => {
-  const idMapa = document.getElementById("id-mapa").value;
+  idMapa = document.getElementById("id-mapa").value;
+  idJogador = 1;
+  atualizaPlacar(idMapa, idJogador);
   iniciarGame(idMapa);
 });
 
