@@ -10,7 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #000149ec;
-padding: 15px;
+  padding: 15px;
 }
 
 :root {
@@ -45,42 +45,39 @@ padding: 15px;
 }
 
 .icon {
-    width: 80px;
-    position: absolute;
-    left: 50px;
-    top: 80px;
+  width: 80px;
+  position: absolute;
+  left: 50px;
+  top: 80px;
 }
 
 .icon a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
-
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
 }
 
 .icon button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
-
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
 }
-.icon i{
-    font-size: 20px;
-    color: #a7a7a7;
-    transition: 0.2s ease-in;
+.icon i {
+  font-size: 20px;
+  color: #a7a7a7;
+  transition: 0.2s ease-in;
 }
 .icon:hover i {
-    transition: 0.2s ease-in;
-    color: #fff;
-    font-size: 22px;
-
+  transition: 0.2s ease-in;
+  color: #fff;
+  font-size: 22px;
 }
 .reiniciar {
-    top: 150px;
-    width: 200px;
+  top: 150px;
+  width: 200px;
 }
 
 form {
@@ -104,7 +101,8 @@ form * {
   height: 100%;
   min-height: 500px;
   background-color: #000;
-
+  position: relative;
+  border: 1px solid black;
 }
 
 .area-principal {
@@ -121,6 +119,7 @@ form * {
 }
 
 .quadrado {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,8 +136,8 @@ form * {
   border-radius: 15px 0px 0px 0px;
 }
 
-.mudar-cor{
-    transition: background-color ease;
+.mudar-cor {
+  transition: background-color ease;
 }
 
 .verde {
@@ -157,24 +156,19 @@ form * {
   border-radius: 0px 0px 15px 0px;
 }
 
-
-
-
-
-
 /* Lateral direita */
 .lateral-direita {
   width: 100%;
   height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .recuo {
-    background-color: #294286;
-    height: 95%;
-    width: 95%;
+  background-color: #294286;
+  height: 95%;
+  width: 95%;
 }
 
 .proxima-nota {
@@ -196,7 +190,6 @@ form * {
   height: 70%;
   border-radius: 15px;
   border: 5px solid #000149ec;
-
 }
 
 .score {
