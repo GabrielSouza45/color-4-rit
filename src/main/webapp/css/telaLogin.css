@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'ps2p';
+    src: url('../css/fonts/PressStart2P.ttf');
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    font-family: "ps2p";
+    background-image: url("./images/DeepSpaceNebula.png");
+    background-color: #020a3b;
+    background-blend-mode: overlay;
+    color: #fff;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 40%;
+    height: 40%;
+    background-color: #00000076;
+    border-radius: 20px;
+}
+
+form div{
+    margin: 10px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    border-radius: 1px;
+    padding-left: 5px;
+    border-style: none;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    transition: 0.5s;
+    color: #000;
+    background-color: #ffffff0d;
+}
+
+::placeholder{
+    font-family: "ps2p";
+    color: #fff2;
+    font-size: 60%;
+}
+
+input:focus {
+    background-color: #555;
+    transition: 0.5s;
+    color: #fff;
+}
+
+button{
+    margin: 0 auto;
+    background-color: aqua;
+}
