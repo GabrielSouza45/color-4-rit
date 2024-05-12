@@ -1,19 +1,24 @@
 import {requestJson} from "../service/requestPost.js";
 import Placar from "../model/Placar.js";
+import PlacarRequest from "../model/placarRequest.js";
 
 const element = document.getElementById("acessar-placar"); 
 element.addEventListener("click", getPlacar);
 
 export function getPlacar (idMapa, idJogador){
-    const placarJson = new Placar(0, 0, null, null, idMapa, idJogador);
+    idMapa = 1;
+    idJogador = 1;
+    const placarJson = new PlacarRequest(idMapa, idJogador);
     const json = JSON.stringify(placarJson);
     const requestOptions = requestJson (json);
 
     return fetch("/get-placar", requestOptions)
     .then((response) => {
         if(!response.ok && !response.status === 404){
-           throw new Error("Erro ao coletar dados do placar!");
+            alert("erroooo");
+            throw new Error("Erro ao coletar dados do placar!");
         }else if(response.status === 404){
+            alert("404");
             throw new Error("Não foram encontrados os dados do placar!");
         }
         return response.json();
@@ -21,7 +26,7 @@ export function getPlacar (idMapa, idJogador){
     
     .then((placar) => {
         
-        console.log(placar);
+        console.log("Placar: ", placar);
 
         return new Placar(
             placar.id,

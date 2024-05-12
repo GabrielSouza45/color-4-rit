@@ -3,7 +3,7 @@ class Jogador{
         this.id = id,
         this.nome = nome,
         this.login = login,
-        this.senha = senha;                                                                                                                                                                                                                                                                                                                                                                                                 z
+        this.senha = senha 
     }
 };
 

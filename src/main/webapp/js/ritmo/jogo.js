@@ -15,6 +15,13 @@ let set;
 
 let idMapa;
 
+// Cores
+const vermelho = document.getElementById("vermelho");
+const verde = document.getElementById("verde");
+const azul = document.getElementById("azul");
+const amarelo = document.getElementById("amarelo");
+const telaProximaCor = document.getElementById("tela-proxima-nota");
+
 const buttonIniciar = document.getElementById("iniciar-jogo");
 buttonIniciar.addEventListener("click", () => {
   const idMapa = document.getElementById("id-mapa").value;
@@ -27,19 +34,13 @@ buttonReiniciar.addEventListener("click", () => {
   audio.pause();
   clearInterval(set);
   clearInterval(averiguaPontos);
+  resetaCores();
 
   iniciarGame();
 });
 
 async function iniciarGame() {
   console.log("Entrou aqui em");
-
-  // Cores
-  const vermelho = document.getElementById("vermelho");
-  const verde = document.getElementById("verde");
-  const azul = document.getElementById("azul");
-  const amarelo = document.getElementById("amarelo");
-  const telaProximaCor = document.getElementById("tela-proxima-nota");
 
   // Pega notas no banco de dados
   await getNotas(idMapa)
@@ -59,7 +60,7 @@ async function iniciarGame() {
     return;
   }
 
-  console.log("Entrou notas");
+  console.log("Inicio Jogo!");
 
   const mapa = listNotas[0].mapa;
 
@@ -67,39 +68,37 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
-  setProximaCor(listNotas[0].cor.toLowerCase());
+
+  setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
+  let tempoInicio = 0;
+  let count = 0;
+
   setTimeout(() => {
     audio = new Audio(`../audio/${musicaNome}.mp3`);
     audio.play();
 
     teclasPressionadas = getTeclasPressionadas(musicaDuracao, audio);
 
-    const tempoInicio = Date.now();
-    let count = 0;
-
+    tempoInicio = Date.now();
     set = setInterval(() => {
       if (listNotas.length != count) {
-        console.log("set");
 
-        const tempo = listNotas[count].tempo;
-        console.log("/");
-        console.log(tempo);
-        console.log(Date.now() - tempoInicio);
-        console.log("\\");
+        const tempoNota = listNotas[count].tempo;
+        const tempoAtual = Date.now() - tempoInicio;
 
-        const aux = Date.now() - tempoInicio;
-        if (tempo >= aux - 10 && tempo <= aux + 10) {
+        if (tempoNota >= tempoAtual - 10 && tempoNota <= tempoAtual + 10) {
           if (count < listNotas.length - 1) {
             const proximoTempo = listNotas[count + 1].tempo;
-            const tempoRestante = proximoTempo - tempo;
+            const tempoRestante = proximoTempo - tempoNota;
 
             setProximaCor(
               listNotas[count + 1].cor.toLowerCase(),
               tempoRestante
             );
-            console.log("Executando trocas");
+          } else {
+            setUltimaCor();
           }
 
           const cor = listNotas[count].cor.toLowerCase();
@@ -113,16 +112,12 @@ async function iniciarGame() {
           count += 1;
         }
       } else {
-        console.log("ListTempo Vazia");
         clearInterval(set);
       }
     }, 0);
 
     // Averiguacao de pontos
     averiguaPontos = setTimeout(() => {
-      console.log(listNotas);
-      console.log(teclasPressionadas);
-
       let pontos = 0;
       const margem = 100;
 
@@ -138,59 +133,82 @@ async function iniciarGame() {
             tempoPress <= tempoNota + margem
           ) {
             if (corPress === corNota) {
-              console.log(
-                "tempoPress-> ",
-                tempoPress,
-                "tempoNota-> ",
-                tempoNota
-              );
               pontos += 1;
             }
           }
         });
       });
+      resetaCores();
 
       console.log("Pontos: ", pontos);
-      alert(`Jogo finalizado, total de ponto: ${pontos}!`);
+      alert(`Jogo finalizado, total de pontos: ${pontos}/${listNotas.length}!`);
     }, musicaDuracao + 2000);
-
-    function resetaCores() {
-      console.log("ResetaCor");
-      vermelho.style.background = "var(--vermelho-background)";
-      verde.style.background = "var(--verde-background)";
-      azul.style.background = "var(--azul-background)";
-      amarelo.style.background = "var(--amarelo-background)";
-    }
   }, 2000);
 
-  function setProximaCor(proximaCor, tempo) {
+  function setProximaCor(proximaCor) {
     console.log("Setando proxima cor: ", `var(--${proximaCor})`);
     telaProximaCor.style.background = `var(--${proximaCor})`;
-
-    const proximoQuadrado = document.getElementById(proximaCor);
-    proximoQuadrado.style.transitionDuration = tempo + "ms";
-    proximoQuadrado.style.backgroundColor = `var(--${proximaCor})`;
   }
 
-  function getNotaCor(tecla) {
-    let cor;
-    switch (tecla) {
-      case "a":
-        cor = "VERMELHO";
-        break;
-      case "w":
-        cor = "AZUL";
-        break;
-      case "s":
-        cor = "VERDE";
-        break;
-      case "d":
-        cor = "AMARELO";
-        break;
-      default:
-        cor = "ERRADO";
-        break;
+  function setUltimaCor() {
+    telaProximaCor.style.background = `#000`;
+  }
+
+
+
+  document.addEventListener('keydown', (event) => {
+    const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
+    const notaAtual = listNotas[count-1];
+    const timing = verificaTiming(notaAtual);
+
+    const quadrado = document.getElementById(teclaPressionada.toLowerCase());
+    if (notaAtual.cor === teclaPressionada && timing) {
+      quadrado.style.boxShadow = 'inset 0 0 10px 5px white';
+     
+    } else {
+      quadrado.style.boxShadow = 'inset 0 0 10px 5px red';
+
     }
-    return cor;
+    setTimeout(() => {
+      quadrado.style.boxShadow = 'none';
+    }, 300);
+    
+  });
+  
+  function verificaTiming(nota) {
+    const margem = 100;
+    const tempoAtual = Date.now() - tempoInicio;
+    return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
   }
+}
+
+
+
+function getNotaCor(tecla) {
+  let cor;
+  switch (tecla) {
+    case "a":
+      cor = "VERMELHO";
+      break;
+    case "w":
+      cor = "AZUL";
+      break;
+    case "s":
+      cor = "VERDE";
+      break;
+    case "d":
+      cor = "AMARELO";
+      break;
+    default:
+      cor = "ERRADO";
+      break;
+  }
+  return cor;
+}
+
+function resetaCores() {
+  vermelho.style.background = "var(--vermelho-background)";
+  verde.style.background = "var(--verde-background)";
+  azul.style.background = "var(--azul-background)";
+  amarelo.style.background = "var(--amarelo-background)";
 }
