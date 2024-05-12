@@ -1,23 +1,25 @@
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Mapa.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Placar.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\enums\Cor.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\CreateUserServlet.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\GetNotas.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\Main.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\MapaDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\NotaDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\DeleteNotas.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\repository\CrudDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\GetPlacar.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Musica.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\PlacarDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\PlacarRequest.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\AdicionarNotas.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\servlet\GetMapa.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\enums\Dificuldade.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Nota.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\ConectarDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\Jogador.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\JogadorDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\controller\MusicaDao.java
-C:\Users\Gabriel Souza\Desktop\pi 3\color-4-rit\src\main\java\br\com\color4rit\model\ListNotas.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\Mapa.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\JogadorDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\Jogador.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\AdicionarNotas.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\PlacarDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\GetNotas.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\repository\CrudDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\enums\Dificuldade.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\Nota.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\Placar.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\MapaDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\NotaDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\GetJogador.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\ListNotas.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\DeleteNotas.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\GetMapa.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\enums\Cor.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\ConectarDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\PlacarRequest.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\model\Musica.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\CreateUserServlet.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\DaoDosDaos.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\controller\MusicaDao.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\servlet\GetPlacar.java
+c:\Users\Tadeu\Documents\Coisas-Tadeu\1-Cursos\ADS-SENAC\3-Semestre\PI\Color4Rit\src\main\java\br\com\color4rit\Main.java
