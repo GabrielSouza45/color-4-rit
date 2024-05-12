@@ -1,164 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./css/areaDeJogo.css" />
-    <link
-      rel="stylesheet"
-      media="(max-width: 768px)"
-      href="css/areaDeJogo.css"
-    />
-    <script src="js/controlePersonagem/control.js"></script>
 
-    <script
-      src="https://kit.fontawesome.com/59ad2e0463.js"
-      crossorigin="anonymous"
-    ></script>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/areaDeJogo.css">
+    <script src="https://kit.fontawesome.com/59ad2e0463.js" crossorigin="anonymous"></script>
     <title>Color 4 Rit</title>
     <script type="module" src="js/ritmo/jogo.js"></script>
-  </head>
+    <script type="module" src="./js/ritmo/api/getPlacar.js"></script>
 
-  <body>
+</head>
+
+<body>
+
     <div class="container">
-      <div class="lateral-esquerda">
-        <div class="icon">
-          <a href="./index.html">
-            <i class="fas fa-angle-left"></i>
-            Voltar
-          </a>
+        <div class="lateral-esquerda">
+
+            <div class="icon">
+                <a href="./index.html">
+                    <i class='fas fa-angle-left'></i>
+                    Voltar
+                </a>
+            </div>
+
+            <div class="icon reiniciar">
+                <button id="reiniciar-jogo">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    Reiniciar musica
+                </button>
+
+
+            </div>
+
+            <form method="post">
+
+                <label>Id do Mapa:</label>
+                <input type="text" name="id-mapa" id="id-mapa">
+
+                <button type="button" onclick="" id="iniciar-jogo"> Iniciar Jogo </button>
+
+
+            </form>
+
+            <div class="area-game">
+                <div class="area-principal">
+
+                    <div class="quadrado vermelho" id="vermelho">
+                        <h3 id="tecla-vermelho">A</h3>
+                    </div>
+
+                    <div class="quadrado verde" id="verde">
+                        <h3 id="tecla-verde">S</h3>
+                    </div>
+
+                    <div class="quadrado azul" id="azul">
+                        <h3 id="tecla-azul">W</h3>
+                    </div>
+
+                    <div class="quadrado amarelo" id="amarelo">
+                        <h3 id="tecla-amarelo">D</h3>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="icon reiniciar">
-          <button id="reiniciar-jogo">
-            <i class="fa-solid fa-arrow-rotate-left"></i>
-            Reiniciar musica
-          </button>
+        <div class="lateral-direita">
+            <div class="recuo">
+                <div class="proxima-nota">
+                    <h2>PROXIMA NOTA</h2>
+                    <div id="tela-proxima-nota" class="tela-proxima-nota">
+
+                    </div>
+                </div>
+
+                <div class="score">
+                    <div class="menu-score">
+                        <div class="titulo">
+                            <h2>Melhores Jogadores</h2>
+
+                        </div>
+                        <div class="jogadores">
+
+                            <div class="capsula">
+                                <div class="jogador">
+                                    <h3 id="jogador1">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao1">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador2">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao2">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador3">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao3">000</h3>
+                                </div>
+                            </div>
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador4">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao4">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador5">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao5">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador6">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao6">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador7">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao7">000</h3>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <form method="post">
-          <label>Id do Mapa:</label>
-          <input type="text" name="id-mapa" id="id-mapa" />
-
-          <button type="button" onclick="" id="iniciar-jogo">
-            Iniciar Jogo
-          </button>
-        </form>
-
-        <div class="area-game">
-          <!-- <div class="character"></div>
-
-          <div class="character" id="character"></div> -->
-
-          <div class="area-principal">
-            <div class="quadrado vermelho" id="vermelho">
-              <div class="character"></div>
-              <h3 id="tecla-vermelho">A</h3>
-            </div>
-
-            <div class="quadrado verde" id="verde">
-              <div class="character2"></div>
-              <h3 id="tecla-verde">S</h3>
-            </div>
-
-            <div class="quadrado azul" id="azul">
-              <div class="character3"></div>
-              <h3 id="tecla-azul">W</h3>
-            </div>
-
-            <div class="quadrado amarelo" id="amarelo">
-              <div class="character4"></div>
-              <h3 id="tecla-amarelo">D</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lateral-direita">
-        <div class="recuo">
-          <div class="proxima-nota">
-            <h2>PROXIMA NOTA</h2>
-            <div id="tela-proxima-nota" class="tela-proxima-nota"></div>
-          </div>
-
-          <div class="score">
-            <div class="menu-score">
-              <div class="titulo">
-                <h2>Melhores Jogadores</h2>
-              </div>
-              <div class="jogadores">
-                <div class="capsula">
-                  <div class="jogador" id="jogador1">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao1">
-                    <h3>000</h3>
-                  </div>
-                </div>
-
-                <div class="capsula">
-                  <div class="jogador" id="jogador2">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao2">
-                    <h3>000</h3>
-                  </div>
-                </div>
-
-                <div class="capsula">
-                  <div class="jogador" id="jogador3">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao3">
-                    <h3>000</h3>
-                  </div>
-                </div>
-                <div class="capsula">
-                  <div class="jogador" id="jogador4">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao4">
-                    <h3>000</h3>
-                  </div>
-                </div>
-
-                <div class="capsula">
-                  <div class="jogador" id="jogador5">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao5">
-                    <h3>000</h3>
-                  </div>
-                </div>
-
-                <div class="capsula">
-                  <div class="jogador" id="jogador6">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao6">
-                    <h3>000</h3>
-                  </div>
-                </div>
-
-                <div class="capsula">
-                  <div class="jogador" id="jogador7">
-                    <h3>Jogador</h3>
-                  </div>
-
-                  <div class="pontuacao" id="pontuacao7">
-                    <h3>000</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </body>
+
+
+</body>
+
 </html>

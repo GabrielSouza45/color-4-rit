@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,7 @@ body {
   align-items: center;
   background-color: #000149ec;
   padding: 15px;
+  font-family: "Press Start 2P", system-ui;
 }
 
 :root {
@@ -45,25 +48,27 @@ body {
 }
 
 .icon {
-  width: 80px;
-  position: absolute;
-  left: 50px;
-  top: 80px;
+    width: 200px;
+    position: absolute;
+    left: 40px;
+    top: 80px;
 }
 
 .icon a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
 }
 
 .icon button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-  font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Press Start 2P", system-ui;
+
 }
 .icon i {
   font-size: 20px;
@@ -179,7 +184,7 @@ form * {
 }
 
 .proxima-nota h2 {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .tela-proxima-nota {
@@ -215,6 +220,7 @@ form * {
 }
 .titulo h2 {
   font-size: 20px;
+  text-align: center;
 }
 
 .jogadores {
@@ -233,6 +239,7 @@ form * {
 }
 
 .capsula h3 {
+  font-size: 15px;
   color: #294286;
 }
 

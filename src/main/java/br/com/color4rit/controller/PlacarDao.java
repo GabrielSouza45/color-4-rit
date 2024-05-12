@@ -15,9 +15,10 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
     @Override
     public void criarTabela() {
-        String sql = "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS `PLACAR`(" +
+                "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                 "  `PONTUACAO` INT,\n" +
-                "  `FK-JOGADOR` BIGINT UNSIGNED,\n" +
+                "  `FK_JOGADOR` BIGINT UNSIGNED,\n" +
                 "  `FK_MAPA` BIGINT UNSIGNED,\n" +
                 "  FOREIGN KEY (`FK_JOGADOR`) REFERENCES `JOGADOR`(`ID`),\n" +
                 "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)\n" +
@@ -26,7 +27,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         PreparedStatement ps = null;
 
         try {
-            ps.getConnection().prepareStatement(sql);
+            ps = getConexao().prepareStatement(sql);
             ps.execute();
             System.out.println("Banco Criado");
             ps.close();
@@ -99,7 +100,9 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         String sql = "INSERT INTO PLACAR (PONTUACAO, FK_MAPA, FK_JOGADOR) VALUES(?,?,?);";
 
         try {
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setInt(1, objeto.getPontuacao());
             ps.setLong(2, objeto.getMapa().getId());
             ps.setLong(3, objeto.getJogador().getId());
@@ -116,7 +119,9 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
                 "PONTUACAO = ?, FK_MAPA = ?, FK_JOGADOR = ?" +
                 "WHERE ID = ?";
         try {
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setInt(1, objeto.getPontuacao());
             ps.setLong(2, objeto.getMapa().getId());
             ps.setLong(3, objeto.getJogador().getId());
@@ -132,7 +137,9 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         String sql = "DELETE FROM PLACAR WHERE ID = ? ";
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, objeto.getId());
 
             int rowCount = ps.executeUpdate();
@@ -162,9 +169,11 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
             ResultSet res = ps.executeQuery();
 
-            Placar placar = new Placar();
+            Placar placar = null;
 
             if (res.next()) {
+                placar = new Placar();
+
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
                 placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
@@ -178,7 +187,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         }
     }
 
-    public List<Placar> listarPorMapa(Mapa mapa) {
+    public Placar listarPorMapa(Mapa mapa) {
         String sql = "SELECT * FROM PLACAR" +
                 " WHERE FK_MAPA = ?";
 
@@ -190,20 +199,19 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             ps.setLong(1, mapa.getId());
 
             ResultSet res = ps.executeQuery();
-
-            List<Placar> placars = new ArrayList<>();
+            Placar placar = null;
 
             if (res.next()) {
-                Placar placar = new Placar();
+                placar = new Placar();
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
                 placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
                 placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
 
-                placars.add(placar);
+
             }
-            return placars;
+            return placar;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

@@ -14,11 +14,12 @@ import java.util.List;
 public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
     public void criarTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS `jogador` (" +
+        String sql = "CREATE TABLE IF NOT EXISTS `JOGADOR` (" +
                 "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "`NOME` VARCHAR(255)," +
                 "`LOGIN` VARCHAR(255)," +
-                "`SENHA` VARCHAR(255));";
+                "`SENHA` VARCHAR(255)" +
+                ");";
 
         PreparedStatement ps = null;
 
@@ -33,7 +34,7 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
     }
 
     public List<Jogador> listarTodos() {
-        String sql = "SELECT * FROM jogador";
+        String sql = "SELECT * FROM JOGADOR";
 
         try {
 
@@ -69,7 +70,9 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, login);
 
             ResultSet res = ps.executeQuery();
@@ -95,7 +98,9 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, id);
 
             ResultSet res = ps.executeQuery();
@@ -122,7 +127,9 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
         String sql = "INSERT INTO JOGADOR (NOME, LOGIN, SENHA) VALUES(?,?,?);";
         try{
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, objeto.getNome());
             ps.setString(2, objeto.getLogin());
             ps.setString(3, objeto.getSenha());
@@ -141,7 +148,9 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
 
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, objeto.getNome());
             ps.setString(2, objeto.getLogin());
             ps.setString(3, objeto.getSenha());
@@ -157,7 +166,9 @@ public class JogadorDao extends ConectarDao implements CrudDao<Jogador> {
         String sql = "DELETE FROM JOGADOR WHERE ID = ? ";
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, objeto.getId());
 
             int rowCount = ps.executeUpdate();
