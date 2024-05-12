@@ -5,8 +5,8 @@ import java.sql.*;
 public class ConectarDao {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private final static String url =
-            "jdbc:mysql://color4rit.ctqs8sckwdnb.sa-east-1.rds.amazonaws.com:3306/color4rit?useTimeZone=true&serverTimeZone=UTC";
-    private final static String usuario = "root";
+            "jdbc:mysql://color4rit.cpgiqwu4wvyq.us-east-1.rds.amazonaws.com:3306/color4rit?useTimeZone=true&serverTimeZone=UTC";
+    private final static String usuario = "admin";
     private final static String senha = "color#123";
     private static Connection conexao;
 
@@ -31,7 +31,7 @@ public class ConectarDao {
             System.out.println(con);
             con.close();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

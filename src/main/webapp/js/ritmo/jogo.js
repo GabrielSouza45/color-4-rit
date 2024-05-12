@@ -68,33 +68,36 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
+  let count = 0;
+
   setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
+  let tempoInicio = 0;
+
   setTimeout(() => {
     audio = new Audio(`../audio/${musicaNome}.mp3`);
     audio.play();
 
     teclasPressionadas = getTeclasPressionadas(musicaDuracao, audio);
 
-    const tempoInicio = Date.now();
-    let count = 0;
-
+    tempoInicio = Date.now();
     set = setInterval(() => {
       if (listNotas.length != count) {
         console.log("set");
 
-        const tempo = listNotas[count].tempo;
+        const tempoNota = listNotas[count].tempo;
+        const tempoAtual = Date.now() - tempoInicio;
+        
         // console.log("/");
-        // console.log(tempo);
-        // console.log(Date.now() - tempoInicio);
+        // console.log(tempoNota);
+        // console.log(tempoAtual);
         // console.log("\\");
 
-        const aux = Date.now() - tempoInicio;
-        if (tempo >= aux - 10 && tempo <= aux + 10) {
+        if (tempoNota >= tempoAtual - 10 && tempoNota <= tempoAtual + 10) {
           if (count < listNotas.length - 1) {
             const proximoTempo = listNotas[count + 1].tempo;
-            const tempoRestante = proximoTempo - tempo;
+            const tempoRestante = proximoTempo - tempoNota;
 
             setProximaCor(
               listNotas[count + 1].cor.toLowerCase(),
@@ -104,41 +107,6 @@ async function iniciarGame() {
           } else {
             setUltimaCor();
           }
-
-          //
-
-          document.addEventListener('keydown', (event) => {
-            const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
-            const notaAtual = listNotas[count];
-
-            console.log(notaAtual.cor);
-            console.log(teclaPressionada);
-            console.log(verificaTiming(notaAtual));
-            if (notaAtual.cor === teclaPressionada && verificaTiming(notaAtual)) {
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
-
-              const quadrado = document.getElementById(teclaPressionada.toLowerCase());
-              quadrado.style.boxShadow = '0 0 10px white';
-            }
-          });
-          
-          function verificaTiming(nota) {
-            const tempoAtual = Math.floor(audio.currentTime * 1000); 
-            const margem = 100;
-            console.log(nota.tempo);
-            console.log(tempoAtual);
-            return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
-          }
-
-
-
-
-
-
-          //
-
-
-
 
           const cor = listNotas[count].cor.toLowerCase();
           console.log(cor);
@@ -190,11 +158,11 @@ async function iniciarGame() {
       resetaCores();
 
       console.log("Pontos: ", pontos);
-      alert(`Jogo finalizado, total de ponto: ${pontos}!`);
+      alert(`Jogo finalizado, total de pontos: ${pontos}/${listNotas.length}!`);
     }, musicaDuracao + 2000);
   }, 2000);
 
-  function setProximaCor(proximaCor, tempo) {
+  function setProximaCor(proximaCor) {
     console.log("Setando proxima cor: ", `var(--${proximaCor})`);
     telaProximaCor.style.background = `var(--${proximaCor})`;
   }
@@ -203,27 +171,64 @@ async function iniciarGame() {
     telaProximaCor.style.background = `#000`;
   }
 
-  function getNotaCor(tecla) {
-    let cor;
-    switch (tecla) {
-      case "a":
-        cor = "VERMELHO";
-        break;
-      case "w":
-        cor = "AZUL";
-        break;
-      case "s":
-        cor = "VERDE";
-        break;
-      case "d":
-        cor = "AMARELO";
-        break;
-      default:
-        cor = "ERRADO";
-        break;
+
+
+  document.addEventListener('keydown', (event) => {
+    const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
+    const notaAtual = listNotas[count-1];
+    const timing = verificaTiming(notaAtual);
+
+    console.log("Nota atual -> ", notaAtual);
+
+    console.log("Cor atual -> ", notaAtual.cor);
+    console.log("Cor pressionada -> ", teclaPressionada);
+    console.log("Verifica Time -> ", timing);
+
+    const quadrado = document.getElementById(teclaPressionada.toLowerCase());
+    if (notaAtual.cor === teclaPressionada && timing) {
+      quadrado.style.boxShadow = 'inset 0 0 10px 5px white';
+     
+    } else {
+      quadrado.style.boxShadow = 'inset 0 0 10px 5px red';
+
     }
-    return cor;
+    setTimeout(() => {
+      quadrado.style.boxShadow = 'none';
+    }, 300);
+    
+  });
+  
+  function verificaTiming(nota) {
+    const margem = 100;
+    const tempoAtual = Date.now() - tempoInicio;
+    console.log("verificaTiming Nota -> ", nota.tempo);
+    console.log("verificaTiming tempoAtual -> ", tempoAtual);
+    return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
   }
+}
+
+
+
+function getNotaCor(tecla) {
+  let cor;
+  switch (tecla) {
+    case "a":
+      cor = "VERMELHO";
+      break;
+    case "w":
+      cor = "AZUL";
+      break;
+    case "s":
+      cor = "VERDE";
+      break;
+    case "d":
+      cor = "AMARELO";
+      break;
+    default:
+      cor = "ERRADO";
+      break;
+  }
+  return cor;
 }
 
 function resetaCores() {
