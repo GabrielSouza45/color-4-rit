@@ -22,12 +22,13 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
                 "  `COR` VARCHAR(50),\n" +
                 "  `TEMPO` INT,\n" +
                 "  `STATUS` INT,\n" +
-                "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)";
+                "  FOREIGN KEY (`FK_MAPA`) REFERENCES `MAPA`(`ID`)" +
+                ");";
 
         PreparedStatement ps = null;
 
         try {
-            ps.getConnection().prepareStatement(sql);
+            ps = getConexao().prepareStatement(sql);
             ps.execute();
             System.out.println("Banco Criado");
             ps.close();
@@ -102,7 +103,9 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
         String sql = "INSERT INTO NOTA (COR, TEMPO, STATUS, FK_MAPA) VALUES(?,?,?,?);";
 
         try {
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, String.valueOf(objeto.getCor()));
             ps.setInt(2, objeto.getTempo());
             ps.setInt(3, objeto.getStatus());
@@ -120,7 +123,9 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
                 "COR = ?, TEMPO = ?, FK_MAPA = ?, STATUS = ?" +
                 "WHERE ID = ?";
         try {
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, String.valueOf(objeto.getCor()));
             ps.setInt(2, objeto.getTempo());
             ps.setLong(3, objeto.getMapa().getId());
@@ -138,7 +143,9 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
         String sql = "UPDATE NOTA SET STATUS = 0 WHERE ID = ?";
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, objeto.getId());
 
             int rowCount = ps.executeUpdate();
@@ -158,7 +165,9 @@ public class NotaDao extends ConectarDao implements CrudDao<Nota> {
         String sql = "UPDATE NOTA SET STATUS = 0 WHERE FK_MAPA = ?";
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, idMapa);
 
             int rowCount = ps.executeUpdate();

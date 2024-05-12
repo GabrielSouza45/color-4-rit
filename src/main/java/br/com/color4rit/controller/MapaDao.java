@@ -21,12 +21,13 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
                 "`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "`DIFICULDADE` VARCHAR(50), " +
                 "`FK_MUSICA` BIGINT UNSIGNED, " +
-                "FOREIGN KEY (`FK_MUSICA`) REFERENCES `musica`(`ID`)";
+                "FOREIGN KEY (`FK_MUSICA`) REFERENCES `MUSICA`(`ID`)" +
+                ");";
 
         PreparedStatement ps = null;
 
         try {
-            ps.getConnection().prepareStatement(sql);
+            ps = getConexao().prepareStatement(sql);
             ps.execute();
             System.out.println("Banco Criado");
             ps.close();
@@ -83,8 +84,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
                 mapa.setId(rs.getLong("ID"));
                 mapa.setDificuldade(Dificuldade.valueOf(rs.getString("DIFICULDADE")));
                 mapa.setMusica(
-                        new MusicaDao()
-                                .listarPorId(rs.getLong("FK_MUSICA")));
+                        new MusicaDao().listarPorId(rs.getLong("FK_MUSICA")));
 
                 return mapa;
             } else {
@@ -142,7 +142,9 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
                 "DIFICULDADE = ?, FK_MUSICA = ?" +
                 "WHERE ID = ?";
         try {
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setString(1, String.valueOf(objeto.getDificuldade()));
             ps.setLong(2, objeto.getMusica().getId());
 
@@ -158,7 +160,9 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
         String sql = "DELETE FROM MAPA WHERE ID = ? ";
         try {
 
-            PreparedStatement ps = (PreparedStatement) getConexao().prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement)
+                    getConexao().prepareStatement(sql);
+
             ps.setLong(1, objeto.getId());
 
             int rowCount = ps.executeUpdate();

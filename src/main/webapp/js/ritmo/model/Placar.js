@@ -6,9 +6,7 @@ class Placar {
         this.id = id, 
         this.pontuacao = pontuacao,
         this.jogador = new Jogador(jogador.id, jogador.nome, jogador.login, jogador.senha),
-        this.mapa = new Mapa(mapa.id, mapa.dificuldade, mapa.musica),
-        this.idMapa = idMapa,
-        this.idJogador = idJogador;
+        this.mapa = new Mapa(mapa.id, mapa.dificuldade, mapa.musica);
     }
 };
 
