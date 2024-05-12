@@ -60,7 +60,7 @@ async function iniciarGame() {
     return;
   }
 
-  console.log("Entrou notas");
+  console.log("Inicio Jogo!");
 
   const mapa = listNotas[0].mapa;
 
@@ -68,12 +68,12 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
-  let count = 0;
 
   setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
   let tempoInicio = 0;
+  let count = 0;
 
   setTimeout(() => {
     audio = new Audio(`../audio/${musicaNome}.mp3`);
@@ -84,15 +84,9 @@ async function iniciarGame() {
     tempoInicio = Date.now();
     set = setInterval(() => {
       if (listNotas.length != count) {
-        console.log("set");
 
         const tempoNota = listNotas[count].tempo;
         const tempoAtual = Date.now() - tempoInicio;
-        
-        // console.log("/");
-        // console.log(tempoNota);
-        // console.log(tempoAtual);
-        // console.log("\\");
 
         if (tempoNota >= tempoAtual - 10 && tempoNota <= tempoAtual + 10) {
           if (count < listNotas.length - 1) {
@@ -103,7 +97,6 @@ async function iniciarGame() {
               listNotas[count + 1].cor.toLowerCase(),
               tempoRestante
             );
-            console.log("Executando trocas, Tempo restante: ", tempoRestante);
           } else {
             setUltimaCor();
           }
@@ -119,16 +112,12 @@ async function iniciarGame() {
           count += 1;
         }
       } else {
-        console.log("ListTempo Vazia");
         clearInterval(set);
       }
     }, 0);
 
     // Averiguacao de pontos
     averiguaPontos = setTimeout(() => {
-      console.log(listNotas);
-      console.log(teclasPressionadas);
-
       let pontos = 0;
       const margem = 100;
 
@@ -144,12 +133,6 @@ async function iniciarGame() {
             tempoPress <= tempoNota + margem
           ) {
             if (corPress === corNota) {
-              console.log(
-                "tempoPress-> ",
-                tempoPress,
-                "tempoNota-> ",
-                tempoNota
-              );
               pontos += 1;
             }
           }
@@ -178,12 +161,6 @@ async function iniciarGame() {
     const notaAtual = listNotas[count-1];
     const timing = verificaTiming(notaAtual);
 
-    console.log("Nota atual -> ", notaAtual);
-
-    console.log("Cor atual -> ", notaAtual.cor);
-    console.log("Cor pressionada -> ", teclaPressionada);
-    console.log("Verifica Time -> ", timing);
-
     const quadrado = document.getElementById(teclaPressionada.toLowerCase());
     if (notaAtual.cor === teclaPressionada && timing) {
       quadrado.style.boxShadow = 'inset 0 0 10px 5px white';
@@ -201,8 +178,6 @@ async function iniciarGame() {
   function verificaTiming(nota) {
     const margem = 100;
     const tempoAtual = Date.now() - tempoInicio;
-    console.log("verificaTiming Nota -> ", nota.tempo);
-    console.log("verificaTiming tempoAtual -> ", tempoAtual);
     return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
   }
 }
@@ -232,8 +207,6 @@ function getNotaCor(tecla) {
 }
 
 function resetaCores() {
-  console.log("ResetaCor");
-
   vermelho.style.background = "var(--vermelho-background)";
   verde.style.background = "var(--verde-background)";
   azul.style.background = "var(--azul-background)";
