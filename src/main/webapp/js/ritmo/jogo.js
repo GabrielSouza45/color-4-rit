@@ -1,8 +1,6 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 
-console.log("Entrou aqui jogo.js");
-
 // Notas
 let listNotas = [];
 let teclasPressionadas = [];
@@ -76,9 +74,12 @@ async function iniciarGame() {
   let count = 0;
 
   setTimeout(() => {
+
+    // Define Música
     audio = new Audio(`../audio/${musicaNome}.mp3`);
     audio.play();
 
+    // Inicia GetTeclas
     teclasPressionadas = getTeclasPressionadas(musicaDuracao, audio);
 
     tempoInicio = Date.now();
@@ -145,6 +146,7 @@ async function iniciarGame() {
     }, musicaDuracao + 2000);
   }, 2000);
 
+  // Set Cor Display
   function setProximaCor(proximaCor) {
     console.log("Setando proxima cor: ", `var(--${proximaCor})`);
     telaProximaCor.style.background = `var(--${proximaCor})`;
@@ -155,7 +157,7 @@ async function iniciarGame() {
   }
 
 
-
+  // Feedback Visual
   document.addEventListener('keydown', (event) => {
     const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
     const notaAtual = listNotas[count-1];
@@ -182,8 +184,7 @@ async function iniciarGame() {
   }
 }
 
-
-
+// Conversor Tecla -> Cor
 function getNotaCor(tecla) {
   let cor;
   switch (tecla) {
@@ -206,6 +207,7 @@ function getNotaCor(tecla) {
   return cor;
 }
 
+// Reseta para Cores Opacas
 function resetaCores() {
   vermelho.style.background = "var(--vermelho-background)";
   verde.style.background = "var(--verde-background)";

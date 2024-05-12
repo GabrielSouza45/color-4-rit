@@ -162,9 +162,11 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
 
             ResultSet res = ps.executeQuery();
 
-            Placar placar = new Placar();
+            Placar placar = null;
 
             if (res.next()) {
+                placar = new Placar();
+
                 placar.setId(res.getLong("ID"));
                 placar.setPontuacao(res.getInt("PONTUACAO"));
                 placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));

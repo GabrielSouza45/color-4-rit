@@ -28,7 +28,6 @@ public class GetPlacar extends HttpServlet {
 
         if (placar == null){
             resp.setStatus(404);
-            return;
         }else {
             resp.setStatus(200);
             resp.setContentType("application/json");
@@ -40,7 +39,6 @@ public class GetPlacar extends HttpServlet {
             out.print(jsonRespos);
             out.flush();
             System.out.println(jsonRespos);
-            return;
         }
     }
 }

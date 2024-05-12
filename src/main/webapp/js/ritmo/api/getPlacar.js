@@ -18,7 +18,7 @@ export function getPlacar (idMapa, idJogador){
             alert("erroooo");
             throw new Error("Erro ao coletar dados do placar!");
         }else if(response.status === 404){
-            alert("404");
+            alert("Não foram encontrados os dados do placar!");
             throw new Error("Não foram encontrados os dados do placar!");
         }
         return response.json();
@@ -39,8 +39,6 @@ export function getPlacar (idMapa, idJogador){
     })
 
     .catch((erro) =>{
-        alert("Erro ao pegar o placar no Backend");
-        console.error(erro);
         throw new Error(erro);
     })
 }
