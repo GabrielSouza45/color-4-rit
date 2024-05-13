@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 
 @font-face {
@@ -28,14 +29,24 @@ form{
     align-items: center;
     justify-content: center;
 
-    width: 40%;
-    height: 40%;
+    width: 40vw;
+    height: 60vh;
     background-color: #00000076;
     border-radius: 20px;
 }
 
-form div{
-    margin: 10px;
+#inputs-botao{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    width: 20vw;
+    height: 30vh;
+}
+
+#inputs-botao div{
+    width: 100%;
+    height: 60px;
 }
 
 input {
@@ -49,23 +60,24 @@ input {
     font-size: 18px;
     font-style: italic;
     transition: 0.5s;
-    color: #000;
+    color: #fff;
     background-color: #ffffff0d;
 }
 
 ::placeholder{
     font-family: "ps2p";
-    color: #fff2;
     font-size: 60%;
 }
 
 input:focus {
-    background-color: #555;
     transition: 0.5s;
     color: #fff;
 }
 
 button{
-    margin: 0 auto;
-    background-color: aqua;
+    border-radius: 2px;
+    border-style: none;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
 }

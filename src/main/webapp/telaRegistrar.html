@@ -5,13 +5,14 @@
     <title>Cadastro</title>
         <link rel="stylesheet" href="./css/telaLogin.css">
     
-    <script type="module" src="./js/login/login.js">
+    <script type="module" src="./js/login/registrar.js">
 
     </script>
 </head>
 <body>
 
 <!-- <h1>Crie sua conta</h1> -->
+
 
 <form>
     <div>
@@ -20,6 +21,10 @@
     
     <div id="inputs-botao">
         <div>
+            <label>Nome:</label>
+            <input type="text" name="nome-usuario" id="nome-usuario" placeholder="Digite seu nome">
+        </div>
+        <div>
             <label>Login:</label>
             <input type="text" name="login-usuario" id="login-usuario" placeholder="Digite seu email">
         </div>
@@ -27,7 +32,7 @@
             <label>Senha:</label>
             <input type="password" name="senha-usuario" id="senha-usuario" placeholder="Digite sua senha">
         </div>
-        <button type="button" id="botaoLogin" onclick=""> Login </button>
+        <button type="button" id="botaoRegistrar" onclick=""> Registrar </button>
     </div>
 </form>
 
