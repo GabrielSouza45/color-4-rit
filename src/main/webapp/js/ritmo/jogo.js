@@ -70,7 +70,6 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
-
   setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
@@ -78,7 +77,6 @@ async function iniciarGame() {
   let count = 0;
 
   setTimeout(() => {
-
     // Define Música
     audio = new Audio(`../audio/${musicaNome}.mp3`);
     audio.play();
@@ -89,7 +87,6 @@ async function iniciarGame() {
     tempoInicio = Date.now();
     set = setInterval(() => {
       if (listNotas.length != count) {
-
         const tempoNota = listNotas[count].tempo;
         const tempoAtual = Date.now() - tempoInicio;
 
@@ -160,31 +157,29 @@ async function iniciarGame() {
     telaProximaCor.style.background = `#000`;
   }
 
-
   // Feedback Visual
-  document.addEventListener('keydown', (event) => {
-    const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
-    const notaAtual = listNotas[count-1];
+  document.addEventListener("keydown", (event) => {
+    const teclaPressionada = getNotaCor(event.key.toLowerCase());
+    const notaAtual = listNotas[count - 1];
     const timing = verificaTiming(notaAtual);
 
     const quadrado = document.getElementById(teclaPressionada.toLowerCase());
     if (notaAtual.cor === teclaPressionada && timing) {
-      quadrado.style.boxShadow = 'inset 0 0 10px 5px white';
-     
+      quadrado.style.boxShadow = "inset 0 0 10px 5px white";
     } else {
-      quadrado.style.boxShadow = 'inset 0 0 10px 5px red';
-
+      quadrado.style.boxShadow = "inset 0 0 10px 5px red";
     }
     setTimeout(() => {
-      quadrado.style.boxShadow = 'none';
+      quadrado.style.boxShadow = "none";
     }, 300);
-    
   });
-  
+
   function verificaTiming(nota) {
     const margem = 100;
     const tempoAtual = Date.now() - tempoInicio;
-    return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
+    return (
+      tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem
+    );
   }
 }
 
