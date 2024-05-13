@@ -11,17 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/get-musica")
 public class GetMusica extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long idMusica = Long.parseLong(req.getParameter("id-musica"));
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Musica musica = new MusicaDao().listarPorId(idMusica);
+        List <Musica> musica = new MusicaDao().listarTodos();
 
-        if (musica != null) {
+        for(Musica obj: musica){
+
+            System.out.println(obj.getId());
+            System.out.println(obj.getDuracao());
+            System.out.println(obj.getAutor());
+            System.out.println(obj.getNome());
+        }
+
+        if (musica.isEmpty()) {
             Gson gson = new Gson();
             String json = gson.toJson(musica);
 

@@ -10,8 +10,8 @@ body {
   background-color: #192d82;
   display: flex;
   align-items: center;
-  margin-top: 80px;
-  margin-left: 200px;
+  margin-top: -126px;
+  margin-left: 850px;
 }
 
 .continuar button {
@@ -52,8 +52,8 @@ body {
   background-color: #192d82;
   display: flex;
   align-items: center;
-  margin-top: -124px;
-  margin-left: 850px;
+  margin-top: 80px;
+  margin-left: 200px;
 }
 
 .selecionarSom select {
@@ -101,7 +101,7 @@ body {
 
 .score {
   width: 100%;
-  height: 95%;
+  height: 98%;
   min-height: 400px;
   padding: 5px;
   display: flex;
@@ -159,4 +159,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.descSom{
+  
+  color: #294286;
+  margin-left: 200px;
+  text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+.descDif{
+  color: #294286;
+  margin-left: 200px;
+  margin-top: 50px;
+  position: absolute;
+  text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }

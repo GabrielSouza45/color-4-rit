@@ -3,20 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"rel="stylesheet" />
     <link rel="stylesheet" href="./css/seletor.css" />
+    <script type="module" src="./js/jsTelaMusica/defineMusica.js"></script>
 
     <title>Color4Rit-Music</title>
   </head>
   <body>
     <div class="logo">
-      <img src="../../../images/logo.jpeg" alt="Color4Rit" />
+      <img src="./images/logor.png" alt="Color4Rit" />
+    </div>
+    <br><br>
+    <br><br>
+
+
+  <h3 class="descSom" >Selecione a música:</h3>
+    <div class="selecionarDif">
+      
+      <select name="" id="">
+        <option value="som1">Universal Exploration</option>
+        <option value="som2">Into The Beat City</option>
+        <option value="som3">Trifonia of Moonlight</option>
+      </select>
     </div>
 
-    <div class="selecionarDif">
+    <h3 class="descDif" >Selecione a dificuldade:</h3>
+    <div class="selecionarSom">
       <select name="" id="">
         <option value="Easy">Easy</option>
         <option value="Medium">Medium</option>
@@ -25,94 +37,96 @@
     </div>
 
     <div class="continuar">
-      <a href="jogo.html"><button type="button">CONTINUAR...</button></a>
-    </div>
-    <div class="selecionarSom">
-      <select name="" id="">
-        <option value="som1">Universal Exploration</option>
-        <option value="som2">Into The Beat City</option>
-        <option value="som3">Trifonia of Moonlight</option>
-      </select>
+      <button type="button" onclick="" id="botaoContinuar">CONTINUAR...</button>
     </div>
 
     <div class="placar">
-      <div class="score">
-        <div class="menu-score">
-          <div class="titulo">
-            <h2>Melhores Jogadores</h2>
-          </div>
-          <div class="jogadores">
-            <div class="capsula">
-              <div class="jogador" id="jogador1">
-                <h3>Jogador</h3>
-              </div>
+                    <div class="menu-score">
+                        <div class="titulo">
+                            <h2>Melhores Jogadores</h2>
 
-              <div class="pontuacao" id="pontuacao1">
-                <h3>000</h3>
-              </div>
-            </div>
+                        </div>
+                        <div class="jogadores">
 
-            <div class="capsula">
-              <div class="jogador" id="jogador2">
-                <h3>Jogador</h3>
-              </div>
+                            <div class="capsula">
+                                <div class="jogador">
+                                    <h3 id="jogador1">Jogador</h3>
+                                </div>
 
-              <div class="pontuacao" id="pontuacao2">
-                <h3>000</h3>
-              </div>
-            </div>
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao1">000</h3>
+                                </div>
+                            </div>
 
-            <div class="capsula">
-              <div class="jogador" id="jogador3">
-                <h3>Jogador</h3>
-              </div>
+                            <div class="capsula">
 
-              <div class="pontuacao" id="pontuacao3">
-                <h3>000</h3>
-              </div>
-            </div>
-            <div class="capsula">
-              <div class="jogador" id="jogador4">
-                <h3>Jogador</h3>
-              </div>
+                                <div class="jogador">
+                                    <h3 id="jogador2">Jogador</h3>
+                                </div>
 
-              <div class="pontuacao" id="pontuacao4">
-                <h3>000</h3>
-              </div>
-            </div>
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao2">000</h3>
+                                </div>
+                            </div>
 
-            <div class="capsula">
-              <div class="jogador" id="jogador5">
-                <h3>Jogador</h3>
-              </div>
+                            <div class="capsula">
 
-              <div class="pontuacao" id="pontuacao5">
-                <h3>000</h3>
-              </div>
-            </div>
+                                <div class="jogador">
+                                    <h3 id="jogador3">Jogador</h3>
+                                </div>
 
-            <div class="capsula">
-              <div class="jogador" id="jogador6">
-                <h3>Jogador</h3>
-              </div>
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao3">000</h3>
+                                </div>
+                            </div>
+                            <div class="capsula">
 
-              <div class="pontuacao" id="pontuacao6">
-                <h3>000</h3>
-              </div>
-            </div>
+                                <div class="jogador">
+                                    <h3 id="jogador4">Jogador</h3>
+                                </div>
 
-            <div class="capsula">
-              <div class="jogador" id="jogador7">
-                <h3>Jogador</h3>
-              </div>
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao4">000</h3>
+                                </div>
+                            </div>
 
-              <div class="pontuacao" id="pontuacao7">
-                <h3>000</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador5">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao5">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador6">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao6">000</h3>
+                                </div>
+                            </div>
+
+                            <div class="capsula">
+
+                                <div class="jogador">
+                                    <h3 id="jogador7">Jogador</h3>
+                                </div>
+
+                                <div class="pontuacao">
+                                    <h3 id="pontuacao7">000</h3>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                
   </body>
 </html>
