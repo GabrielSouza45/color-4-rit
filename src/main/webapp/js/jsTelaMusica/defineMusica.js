@@ -17,7 +17,7 @@ async function defineMusica (){
             throw new Error(error);
         });
 
-        selectMusica .innerHTML = "";
+        selectMusica.innerHTML = "";
         listaDeMusicas.forEach(musica=>{
             const option = document.createElement("option");
             option.value = musica.id;

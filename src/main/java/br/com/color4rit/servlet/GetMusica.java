@@ -19,17 +19,9 @@ public class GetMusica extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List <Musica> musica = new MusicaDao().listarTodos();
+        List<Musica> musica = new MusicaDao().listarTodos();
 
-        for(Musica obj: musica){
-
-            System.out.println(obj.getId());
-            System.out.println(obj.getDuracao());
-            System.out.println(obj.getAutor());
-            System.out.println(obj.getNome());
-        }
-
-        if (musica.isEmpty()) {
+        if (!musica.isEmpty()) {
             Gson gson = new Gson();
             String json = gson.toJson(musica);
 
@@ -43,5 +35,7 @@ public class GetMusica extends HttpServlet {
         } else {
             resp.setStatus(404);
         }
+
+
     }
 }

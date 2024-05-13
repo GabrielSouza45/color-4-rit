@@ -2,8 +2,8 @@ import {requestJson} from "../service/requestPost.js";
 import Placar from "../model/Placar.js";
 import PlacarRequest from "../model/placarRequest.js";
 
-const element = document.getElementById("acessar-placar"); 
-element.addEventListener("click", getPlacar);
+// const element = document.getElementById("acessar-placar"); 
+// element.addEventListener("click", getPlacar);
 
 export function getPlacar (idMapa, idJogador){
     idMapa = 1;
