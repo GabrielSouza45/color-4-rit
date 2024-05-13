@@ -3,3 +3,4 @@
 *.class
 *.lst
 /target/tomcat/logs
+.idea/misc.xml
