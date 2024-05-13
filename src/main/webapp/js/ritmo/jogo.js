@@ -41,7 +41,7 @@ buttonReiniciar.addEventListener("click", () => {
   iniciarGame();
 });
 
-async function iniciarGame() {
+export async function iniciarGame(idMapa) {
   console.log("Entrou aqui em");
 
   // Pega notas no banco de dados
