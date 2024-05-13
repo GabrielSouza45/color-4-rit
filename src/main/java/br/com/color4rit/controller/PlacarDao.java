@@ -187,7 +187,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         }
     }
 
-    public Placar listarPorMapa(Mapa mapa) {
+    public ArrayList <Placar> listarPorMapa(Long idMapa) {
         String sql = "SELECT * FROM PLACAR" +
                 " WHERE FK_MAPA = ?";
 
@@ -196,22 +196,21 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             PreparedStatement ps = (PreparedStatement)
                     getConexao().prepareStatement(sql);
 
-            ps.setLong(1, mapa.getId());
+            ps.setLong(1, idMapa);
 
             ResultSet res = ps.executeQuery();
-            Placar placar = null;
+            ArrayList <Placar> placares = new ArrayList<>();
 
-            if (res.next()) {
-                placar = new Placar();
-                placar.setId(res.getLong("ID"));
-                placar.setPontuacao(res.getInt("PONTUACAO"));
-                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
-                placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
+                while (res.next()) {
+                    Placar placar = new Placar();
+                    placar.setId(res.getLong("ID"));
+                    placar.setPontuacao(res.getInt("PONTUACAO"));
+                    placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
+                    placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
-
-
-            }
-            return placar;
+                    placares.add(placar);
+                }
+            return placares;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

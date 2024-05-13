@@ -2,13 +2,8 @@ import {requestJson} from "../service/requestPost.js";
 import Placar from "../model/Placar.js";
 import PlacarRequest from "../model/placarRequest.js";
 
-const element = document.getElementById("acessar-placar"); 
-element.addEventListener("click", getPlacar);
-
-export function getPlacar (idMapa, idJogador){
-    idMapa = 1;
-    idJogador = 1;
-    const placarJson = new PlacarRequest(idMapa, idJogador);
+export function getPlacar (idMapa){
+    const placarJson = new PlacarRequest(idMapa);
     const json = JSON.stringify(placarJson);
     const requestOptions = requestJson (json);
 
@@ -24,18 +19,21 @@ export function getPlacar (idMapa, idJogador){
         return response.json();
     })
     
-    .then((placar) => {
+    .then((placares) => {
         
-        console.log("Placar: ", placar);
+        console.log("Placar: ", placares);
 
-        return new Placar(
-            placar.id,
-            placar.pontuacao,
-            placar.jogador,
-            placar.mapa,
-            placar.idMapa,
-            placar.idJogador
-        );
+        return placares.map(placar =>{
+            return new Placar(
+                placar.id,
+                placar.pontuacao,
+                placar.jogador,
+                placar.mapa,
+                placar.idMapa,
+                placar.idJogador
+            );
+        });
+
     })
 
     .catch((erro) =>{
