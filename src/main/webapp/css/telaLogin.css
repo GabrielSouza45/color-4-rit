@@ -81,3 +81,38 @@ button{
     height: 40px;
     cursor: pointer;
 }
+
+.icon {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    position: absolute;
+    left: 40px;
+    top: 80px;
+    height:40px ;
+    border: red solid 1px;
+    
+}
+
+.icon a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.icon i{
+    font-size: 17px;
+    color: #a7a7a7;
+    transition: 0.2s ease-in;
+}
+
+.icon:hover i {
+    transition: 0.2s ease-in;
+    color: #fff;
+    font-size: 16px;
+}
+
+.icon:hover a {
+    transition: 0.2s ease-in;
+    color: #fff;
+}
