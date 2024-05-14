@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,24 +20,20 @@ public class GetJogador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String loginJogador = req.getParameter("login-jogador");
-        System.out.println(loginJogador);
+        BufferedReader reader = req.getReader();
+        String json = reader.readLine();
+        Gson gson = new Gson();
+        Jogador jogador = gson.fromJson(json, Jogador.class);
 
-        Jogador jogador = new JogadorDao().listarPorLogin(loginJogador);
+        Jogador jogadorLogado = new JogadorDao().listarPorLogin(jogador.getLogin());
 
-        if (jogador != null) {
+        if (jogadorLogado != null) {
 
-            Gson gson = new Gson();
-            String json = gson.toJson(jogador);
-            System.out.println(json);
-
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-
-            PrintWriter out = resp.getWriter();
-            out.print(json);
-            resp.setStatus(200);
-            out.flush();
+            if(jogadorLogado.getSenha().equals(jogador.getSenha())){
+                resp.setStatus(200);
+            } else {
+                resp.setStatus(401);
+            }
 
         } else
             resp.setStatus(404);

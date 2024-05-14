@@ -1,6 +1,7 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 import { atualizaPlacar } from "./service/placar.js";
+import { salvarPlacar } from "./api/salvarPlacar.js"
 
 // Notas
 let listNotas = [];
@@ -119,7 +120,7 @@ async function iniciarGame() {
     }, 0);
 
     // Averiguacao de pontos
-    averiguaPontos = setTimeout(() => {
+    averiguaPontos = setTimeout(async () => {
       let pontos = 0;
       const margem = 100;
 
@@ -141,8 +142,15 @@ async function iniciarGame() {
         });
       });
       resetaCores();
-
+      
+      console.log()
       console.log("Pontos: ", pontos);
+      try {
+        await salvarPlacar({ pontuacao: pontos });
+        console.log("Placar salvo com sucesso!");
+    } catch (error) {
+        console.error("Erro ao salvar o placar:", error);
+    }
       alert(`Jogo finalizado, total de pontos: ${pontos}/${listNotas.length}!`);
     }, musicaDuracao + 2000);
   }, 2000);
