@@ -1,6 +1,7 @@
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\JogadorDao.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetMapa.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetPlacar.java
+C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\scoreNovo.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\model\ListNotas.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\MusicaDao.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\CreateUserServlet.java
@@ -11,6 +12,7 @@ C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\C
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\model\Mapa.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetNotas.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\MapaDao.java
+C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\CreateRegistro.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\enums\Cor.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\model\Placar.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\Main.java

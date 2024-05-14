@@ -110,7 +110,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             ps.execute();
 
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -187,7 +187,7 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         }
     }
 
-    public ArrayList <Placar> listarPorMapa(Long idMapa) {
+    public ArrayList<Placar> listarPorMapa(Long idMapa) {
         String sql = "SELECT * FROM PLACAR" +
                 " WHERE FK_MAPA = ?";
 
@@ -199,21 +199,41 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             ps.setLong(1, idMapa);
 
             ResultSet res = ps.executeQuery();
-            ArrayList <Placar> placares = new ArrayList<>();
+            ArrayList<Placar> placares = new ArrayList<>();
 
-                while (res.next()) {
-                    Placar placar = new Placar();
-                    placar.setId(res.getLong("ID"));
-                    placar.setPontuacao(res.getInt("PONTUACAO"));
-                    placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
-                    placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
+            while (res.next()) {
+                Placar placar = new Placar();
+                placar.setId(res.getLong("ID"));
+                placar.setPontuacao(res.getInt("PONTUACAO"));
+                placar.setMapa(new MapaDao().listarPorId(res.getLong("FK_MAPA")));
+                placar.setJogador(new JogadorDao().listarPorId(res.getLong("FK_JOGADOR")));
 
-                    placares.add(placar);
-                }
+                placares.add(placar);
+            }
             return placares;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void atualizarPlacar(int novoDado) {
+        try {
+            PreparedStatement ps = getConexao().prepareStatement("SELECT MAX(PONTUACAO) FROM PLACAR");
+            ResultSet rs = ps.executeQuery();
+            int maiorPontuacao = 0;
+            if (rs.next()) {
+                maiorPontuacao = rs.getInt(1);
+            }
+
+            if (novoDado > maiorPontuacao || maiorPontuacao == 0) {
+                ps = getConexao().prepareStatement("INSERT INTO PLACAR (PONTUACAO) VALUES (?)");
+                ps.setInt(1, novoDado);
+                ps.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

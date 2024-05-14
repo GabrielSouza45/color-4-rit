@@ -42,8 +42,5 @@ public class CreateRegistro extends HttpServlet {
             }
             response.setStatus(200);
         }
-
-
-
     }
 }

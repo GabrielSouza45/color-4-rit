@@ -1,6 +1,7 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 import { atualizaPlacar } from "./service/placar.js";
+import { atualizaPlacar } from "./api/salvarPlacar.js"
 
 // Notas
 let listNotas = [];
