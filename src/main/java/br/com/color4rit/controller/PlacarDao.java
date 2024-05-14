@@ -216,24 +216,4 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
             return null;
         }
     }
-
-    public void atualizarPlacar(int novoDado) {
-        try {
-            PreparedStatement ps = getConexao().prepareStatement("SELECT MAX(PONTUACAO) FROM PLACAR");
-            ResultSet rs = ps.executeQuery();
-            int maiorPontuacao = 0;
-            if (rs.next()) {
-                maiorPontuacao = rs.getInt(1);
-            }
-
-            if (novoDado > maiorPontuacao || maiorPontuacao == 0) {
-                ps = getConexao().prepareStatement("INSERT INTO PLACAR (PONTUACAO) VALUES (?)");
-                ps.setInt(1, novoDado);
-                ps.executeUpdate();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

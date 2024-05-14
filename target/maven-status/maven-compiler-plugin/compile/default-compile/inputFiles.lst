@@ -1,8 +1,8 @@
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\JogadorDao.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetMapa.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetPlacar.java
-C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\scoreNovo.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\model\ListNotas.java
+C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\GetNovo.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\controller\MusicaDao.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\servlet\CreateUserServlet.java
 C:\Users\ns480\Documents\color-4-rit\src\main\java\br\com\color4rit\repository\CrudDao.java

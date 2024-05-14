@@ -16,6 +16,5 @@ br\com\color4rit\controller\DaoDosDaos.class
 br\com\color4rit\repository\CrudDao.class
 br\com\color4rit\controller\MapaDao.class
 br\com\color4rit\servlet\GetPlacar.class
-br\com\color4rit\servlet\scoreNovo.class
 br\com\color4rit\Main.class
 br\com\color4rit\controller\MusicaDao.class
