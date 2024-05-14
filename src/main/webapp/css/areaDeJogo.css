@@ -262,9 +262,11 @@ form * {
 }
 
 .character-azul {
-  width: 10px;
-  height: 10px;
-  background-color: rgb(0, 0, 0);
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -272,9 +274,11 @@ form * {
 }
 
 .character-vermelho {
-  width: 10px;
-  height: 10px;
-  background-color: rgb(0, 0, 0);
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -282,9 +286,11 @@ form * {
 }
 
 .character-amarelo {
-  width: 10px;
-  height: 10px;
-  background-color: rgb(0, 0, 0);
+background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -292,9 +298,11 @@ form * {
 }
 
 .character-verde {
-  width: 10px;
-  height: 10px;
-  background-color: black;
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   top: 50%; 
   left: 50%; 
