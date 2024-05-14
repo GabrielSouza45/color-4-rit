@@ -5,6 +5,8 @@ public class PlacarRequest {
     private Long idMapa;
     private Long idJogador;
 
+    private int pontuacao;
+
     public Long getIdMapa() {
         return idMapa;
     }
@@ -19,5 +21,13 @@ public class PlacarRequest {
 
     public void setIdJogador(Long idJogador) {
         this.idJogador = idJogador;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
     }
 }

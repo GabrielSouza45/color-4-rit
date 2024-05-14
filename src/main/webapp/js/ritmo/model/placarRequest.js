@@ -1,5 +1,7 @@
 export default class PlacarRequest {
-    constructor(idMapa) {
-        this.idMapa = idMapa
+    constructor(idMapa, idJogador = null, pontuacao = null) {
+        this.idMapa = idMapa,
+        this.idJogador = idJogador,
+        this.pontuacao = pontuacao
     }
 }

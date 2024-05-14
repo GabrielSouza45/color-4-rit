@@ -1,7 +1,8 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 import { atualizaPlacar } from "./service/placar.js";
-import { salvarPlacar } from "./api/salvarPlacar.js"
+import { salvarPlacar } from "./api/salvarPlacar.js";
+import PlacarRequest from "./model/placarRequest.js";
 
 // Notas
 let listNotas = [];
@@ -27,7 +28,9 @@ const buttonIniciar = document.getElementById("iniciar-jogo");
 buttonIniciar.addEventListener("click", () => {
   idMapa = document.getElementById("id-mapa").value;
   idJogador = 1;
+
   atualizaPlacar(idMapa, idJogador);
+ 
   iniciarGame(idMapa);
 });
 
@@ -43,7 +46,6 @@ buttonReiniciar.addEventListener("click", () => {
 });
 
 async function iniciarGame() {
-  console.log("Entrou aqui em");
 
   // Pega notas no banco de dados
   await getNotas(idMapa)
@@ -141,17 +143,19 @@ async function iniciarGame() {
           }
         });
       });
+
       resetaCores();
-      
-      console.log()
-      console.log("Pontos: ", pontos);
-      try {
-        await salvarPlacar({ pontuacao: pontos });
-        console.log("Placar salvo com sucesso!");
-    } catch (error) {
-        console.error("Erro ao salvar o placar:", error);
-    }
+
       alert(`Jogo finalizado, total de pontos: ${pontos}/${listNotas.length}!`);
+
+      // Salvar Placar
+      await salvarPlacar(new PlacarRequest(idMapa, idJogador, pontos)) 
+        .then ( () => {
+          setTimeout(() => {
+            atualizaPlacar(idMapa, idJogador); 
+          }, 2000);
+        });
+
     }, musicaDuracao + 2000);
   }, 2000);
 

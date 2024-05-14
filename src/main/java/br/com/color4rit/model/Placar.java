@@ -1,5 +1,11 @@
 package br.com.color4rit.model;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class Placar {
 
     private Long id;
@@ -8,6 +14,7 @@ public class Placar {
 
     private Jogador jogador;
     private Mapa mapa;
+    private Date dataIni;
 
 
     public Jogador getJogador() {
@@ -41,6 +48,24 @@ public class Placar {
 
     public void setMapa(Mapa mapa) {
         this.mapa = mapa;
+    }
+
+    public LocalDateTime getDataIniLocalDateTime() {
+        Instant instant = this.dataIni.toInstant();
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+    }
+
+    public Date getDataIni() {
+        return dataIni;
+    }
+
+    public void setDataIni(Date dataIni) {
+        this.dataIni = dataIni;
+    }
+
+    public void setDataIniLocalDateTime(LocalDateTime dataIni){
+        Instant instant = dataIni.atZone(ZoneId.systemDefault()).toInstant();
+        this.dataIni = Date.from(instant);
     }
 
     @Override

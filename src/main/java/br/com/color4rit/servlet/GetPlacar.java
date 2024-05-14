@@ -24,7 +24,6 @@ public class GetPlacar extends HttpServlet {
         Gson gson = new Gson();
         PlacarRequest placarReq = gson.fromJson(json, PlacarRequest.class);
 
-        System.out.println("1 -> " + placarReq);
         ArrayList <Placar> placar = new PlacarDao().listarPorMapa(placarReq.getIdMapa());
 
         if (placar.isEmpty()){
@@ -36,7 +35,6 @@ public class GetPlacar extends HttpServlet {
 
             PrintWriter out = resp.getWriter();
             String jsonRespos = gson.toJson(placar);
-            System.out.println("2 -> " + jsonRespos);
             out.print(jsonRespos);
             out.flush();
             System.out.println(jsonRespos);
