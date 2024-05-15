@@ -3,6 +3,7 @@ import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 import { atualizaPlacar } from "./service/placar.js";
 import { salvarPlacar } from "./api/salvarPlacar.js";
 import PlacarRequest from "./model/placarRequest.js";
+import { getCorTecla } from "./service/getCorTecla.js";
 
 // Notas
 let listNotas = [];
@@ -124,13 +125,13 @@ async function iniciarGame() {
     // Averiguacao de pontos
     averiguaPontos = setTimeout(async () => {
       let pontos = 0;
-      const margem = 100;
+      const margem = 200;
 
       listNotas.forEach((nota) => {
         teclasPressionadas.forEach((press) => {
           const tempoPress = press.tempo;
           const tempoNota = nota.tempo;
-          const corPress = getNotaCor(press.tecla);
+          const corPress = getCorTecla(press.tecla);
           const corNota = nota.cor;
 
           if (
@@ -171,7 +172,7 @@ async function iniciarGame() {
 
   // Feedback Visual
   document.addEventListener("keydown", (event) => {
-    const teclaPressionada = getNotaCor(event.key.toLowerCase());
+    const teclaPressionada = getCorTecla(event.key.toLowerCase());
     const notaAtual = listNotas[count - 1];
     const timing = verificaTiming(notaAtual);
 
@@ -187,35 +188,12 @@ async function iniciarGame() {
   });
 
   function verificaTiming(nota) {
-    const margem = 100;
+    const margem = 200;
     const tempoAtual = Date.now() - tempoInicio;
     return (
       tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem
     );
   }
-}
-
-// Conversor Tecla -> Cor
-function getNotaCor(tecla) {
-  let cor;
-  switch (tecla) {
-    case "a":
-      cor = "VERMELHO";
-      break;
-    case "w":
-      cor = "AZUL";
-      break;
-    case "s":
-      cor = "VERDE";
-      break;
-    case "d":
-      cor = "AMARELO";
-      break;
-    default:
-      cor = "ERRADO";
-      break;
-  }
-  return cor;
 }
 
 // Reseta para Cores Opacas
