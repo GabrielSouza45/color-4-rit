@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet("/get-placar")
 public class GetPlacar extends HttpServlet {
@@ -23,10 +24,9 @@ public class GetPlacar extends HttpServlet {
         Gson gson = new Gson();
         PlacarRequest placarReq = gson.fromJson(json, PlacarRequest.class);
 
-        System.out.println("1 -> " + placarReq);
-        Placar placar = new PlacarDao().listarPorJogador(placarReq.getIdJogador(), placarReq.getIdMapa());
+        ArrayList <Placar> placar = new PlacarDao().listarPorMapa(placarReq.getIdMapa());
 
-        if (placar == null){
+        if (placar.isEmpty()){
             resp.setStatus(404);
         }else {
             resp.setStatus(200);
@@ -35,7 +35,6 @@ public class GetPlacar extends HttpServlet {
 
             PrintWriter out = resp.getWriter();
             String jsonRespos = gson.toJson(placar);
-            System.out.println("2 -> " + jsonRespos);
             out.print(jsonRespos);
             out.flush();
             System.out.println(jsonRespos);

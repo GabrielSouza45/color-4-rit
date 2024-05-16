@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/areaDeJogo.css">
     <script src="https://kit.fontawesome.com/59ad2e0463.js" crossorigin="anonymous"></script>
-    <title>Color 4 Rit</title>
     <script type="module" src="js/ritmo/jogo.js"></script>
     <script type="module" src="./js/ritmo/api/getPlacar.js"></script>
     <script src="js/controlePersonagem/control.js"></script>
+    <script type="module" src="js/ritmo/service/placar.js"></script>
 
+    <title>Color 4 Rit</title>
 
 </head>
 
@@ -37,7 +38,7 @@
             <form method="post">
 
                 <label>Id do Mapa:</label>
-                <input type="text" name="id-mapa" id="id-mapa">
+                <input type="text" autocomplete="off" name="id-mapa" id="id-mapa">
 
                 <button type="button" onclick="" id="iniciar-jogo"> Iniciar Jogo </button>
 

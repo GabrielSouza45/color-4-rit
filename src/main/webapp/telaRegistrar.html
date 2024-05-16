@@ -2,19 +2,17 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <script src="https://kit.fontawesome.com/59ad2e0463.js" crossorigin="anonymous"></script>
-    <title>Color 4 Rit - Cadastro</title>
-    <link rel="stylesheet" href="./css/telaLogin.css">
-    <script type="module" src="./js/login/login.js"></script>
+    <title>Cadastro</title>
+        <link rel="stylesheet" href="./css/telaLogin.css">
+    
+    <script type="module" src="./js/login/registrar.js">
+
+    </script>
 </head>
 <body>
 
-<div class="icon">
-    <a href="./index.html" >
-        <i class='fas fa-angle-left' ></i>
-        Voltar
-    </a>
-</div>
+<!-- <h1>Crie sua conta</h1> -->
+
 
 <form>
     <div>
@@ -23,6 +21,10 @@
     
     <div id="inputs-botao">
         <div>
+            <label>Nome:</label>
+            <input type="text" name="nome-usuario" id="nome-usuario" placeholder="Digite seu nome">
+        </div>
+        <div>
             <label>Login:</label>
             <input type="text" name="login-usuario" id="login-usuario" placeholder="Digite seu email">
         </div>
@@ -30,7 +32,7 @@
             <label>Senha:</label>
             <input type="password" name="senha-usuario" id="senha-usuario" placeholder="Digite sua senha">
         </div>
-        <button type="button" id="botaoLogin" onclick=""> Login </button>
+        <button type="button" id="botaoRegistrar" onclick=""> Registrar </button>
     </div>
 </form>
 

@@ -5,13 +5,16 @@ br\com\color4rit\enums\Dificuldade.class
 br\com\color4rit\model\Jogador.class
 br\com\color4rit\model\Placar.class
 br\com\color4rit\model\Nota.class
+br\com\color4rit\model\PlacarRequest.class
 br\com\color4rit\model\Musica.class
 br\com\color4rit\controller\JogadorDao.class
 br\com\color4rit\servlet\GetNotas.class
 br\com\color4rit\model\Mapa.class
 br\com\color4rit\controller\PlacarDao.class
 br\com\color4rit\servlet\CreateUserServlet.class
+br\com\color4rit\controller\DaoDosDaos.class
 br\com\color4rit\repository\CrudDao.class
 br\com\color4rit\controller\MapaDao.class
+br\com\color4rit\servlet\GetPlacar.class
 br\com\color4rit\Main.class
 br\com\color4rit\controller\MusicaDao.class
