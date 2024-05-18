@@ -15,9 +15,12 @@ export function registrarJogador() {
 
     return fetch("/add-registrar", requestOptions)
     .then((response) => {
-        if(!response.ok){
+        if(!response.ok && response.status != 401){
             alert("erroooo");
             throw new Error("Erro no servidor!");
+        } else if (response.status == 401) {
+            alert("Login já existente!");
+            return;
         }
         alert("Usuário criado com sucesso!");
         window.location.href = "telaLogin.html";

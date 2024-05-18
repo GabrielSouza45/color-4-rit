@@ -4,6 +4,7 @@ import { atualizaPlacar } from "./service/placar.js";
 import { salvarPlacar } from "./api/salvarPlacar.js";
 import PlacarRequest from "./model/placarRequest.js";
 import { getCorTecla } from "./service/getCorTecla.js";
+import {user} from "../usuario.js";
 
 // Notas
 let listNotas = [];
@@ -15,8 +16,8 @@ let audio;
 let averiguaPontos;
 let set;
 
-let idMapa;
 let idJogador;
+let idMapa;
 
 // Cores
 const vermelho = document.getElementById("vermelho");
@@ -25,15 +26,23 @@ const azul = document.getElementById("azul");
 const amarelo = document.getElementById("amarelo");
 const telaProximaCor = document.getElementById("tela-proxima-nota");
 
-const buttonIniciar = document.getElementById("iniciar-jogo");
-buttonIniciar.addEventListener("click", () => {
-  idMapa = document.getElementById("id-mapa").value;
-  idJogador = 1;
+if (window.location.pathname.endsWith('jogo.html')) {
 
-  atualizaPlacar(idMapa, idJogador);
- 
-  iniciarGame(idMapa);
-});
+  function obterParametroDaURL(nome) {
+    nome = nome.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + nome + '=([^&#]*)');
+    var resultados = regex.exec(location.search);
+    return resultados === null ? '' : decodeURIComponent(resultados[1].replace(/\+/g, ' '));
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var parametroIdMapa = obterParametroDaURL('idMapa');
+    idMapa = parametroIdMapa;
+    atualizaPlacar(idMapa, user.id)
+    iniciarGame(idMapa);
+  });
+}
+
 
 const buttonReiniciar = document.getElementById("reiniciar-jogo");
 buttonReiniciar.addEventListener("click", () => {
@@ -43,7 +52,7 @@ buttonReiniciar.addEventListener("click", () => {
   clearInterval(averiguaPontos);
   resetaCores();
 
-  iniciarGame();
+  iniciarGame(idMapa);
 });
 
 
@@ -127,7 +136,7 @@ export async function iniciarGame(idMapa) {
     // Averiguacao de pontos
     averiguaPontos = setTimeout(async () => {
       let pontos = 0;
-      const margem = 200;
+      const margem = 300;
 
       listNotas.forEach((nota) => {
         teclasPressionadas.forEach((press) => {
@@ -190,7 +199,7 @@ export async function iniciarGame(idMapa) {
   });
 
   function verificaTiming(nota) {
-    const margem = 200;
+    const margem = 300;
     const tempoAtual = Date.now() - tempoInicio;
     return (
       tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem

@@ -96,7 +96,7 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
         }
     }
 
-    public Mapa buscarMapaPorMusicaDificuldade(Musica musica, Dificuldade dificuldade){
+    public Mapa buscarMapaPorMusicaDificuldade(Long idMusica, Dificuldade dificuldade){
         String sql = "SELECT * FROM MAPA WHERE FK_MUSICA = ?" +
                 " AND DIFICULDADE = ? ";
 
@@ -104,15 +104,20 @@ public class MapaDao extends ConectarDao implements CrudDao<Mapa> {
             PreparedStatement ps = (PreparedStatement)
                     getConexao().prepareStatement(sql);
 
-            ps.setLong(1, musica.getId());
+            ps.setLong(1, idMusica);
             ps.setString(2, dificuldade.name());
 
             ResultSet res = ps.executeQuery();
 
-            Mapa mapa = new Mapa();
-            mapa.setId(res.getLong("ID"));
-            mapa.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
-            mapa.setDificuldade(Dificuldade.valueOf(res.getString("DIFICULDADE")));
+            Mapa mapa = null;
+            if (res.next()) {
+
+                mapa = new Mapa();
+                mapa.setId(res.getLong("ID"));
+                mapa.setMusica(new MusicaDao().listarPorId(res.getLong("FK_MUSICA")));
+                mapa.setDificuldade(Dificuldade.valueOf(res.getString("DIFICULDADE")));
+
+            }
 
             return mapa;
         }catch (SQLException e){

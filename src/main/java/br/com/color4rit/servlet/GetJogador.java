@@ -31,6 +31,16 @@ public class GetJogador extends HttpServlet {
 
             if(jogadorLogado.getSenha().equals(jogador.getSenha())){
                 resp.setStatus(200);
+
+                jogadorLogado.setSenha(null);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+
+                PrintWriter out = resp.getWriter();
+                out.print(gson.toJson(jogadorLogado));
+                out.flush();
+
             } else {
                 resp.setStatus(401);
             }
