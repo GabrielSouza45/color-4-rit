@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color4Rit</title>
+    <link rel="stylesheet" href="./css/telaInicial.css">
 
-    </head>
+    
+</head>
 <body>
-
-<button onclick="window.location.href = './telaCadastro.html'" type="button">Cadastrar</button>
-<button onclick="window.location.href = './jogo.html'" type="button">Jogo</button>
-
+<div>    
+    <img src="./css/images/Logo.png" alt="logo">
+    <h1>CLICK 2 PLAY</h1>
+</div>
+<script>
+    document.body.addEventListener('click', function() {
+        window.location.href = './telaLogin.html';
+    });
+</script>
 </body>
 </html>
