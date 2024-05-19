@@ -1,0 +1,60 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'ps2p';
+    src: url('../css/fonts/PressStart2P.ttf');
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: rgb(4, 0, 32);
+    height: 100vh;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    height: 20vw;
+    width: 20vw;
+    animation: oscilar 5s infinite;
+}
+
+h1{
+    color: #fff;
+    font-family: "ps2p";
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    animation: colorido 1s infinite linear;
+}
+
+
+@keyframes colorido {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+}
+
+@keyframes oscilar {
+    0%{filter: grayscale(); transform: scale(1);}
+    50%{transform: scale(1.1);}
+    100%{filter: none; transform: scale(1);}
+}
