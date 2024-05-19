@@ -12,10 +12,9 @@ export function getPlacar (idMapa){
     return fetch("/get-placar", requestOptions)
     .then((response) => {
         if(!response.ok && !response.status === 404){
-            alert("erroooo");
+            alert("Erro ao coletar dados do placar!");
             throw new Error("Erro ao coletar dados do placar!");
         }else if(response.status === 404){
-            alert("Não foram encontrados os dados do placar!");
             throw new Error("Não foram encontrados os dados do placar!");
         }
         return response.json();

@@ -1,12 +1,25 @@
 import MapaRequest from "../ritmo/model/MapaRequest.js";
+import { atualizaPlacar, zeraPlacar } from "../ritmo/service/placar.js";
 import { requestJson } from "../ritmo/service/requestPost.js";
-import { iniciarGame } from "../ritmo/jogo.js";
 import { getMusica } from "./getMusica.js";
 
-window.onload = defineMusica();
+window.onload = () => {
+  const userLogado = sessionStorage.getItem('loginUserLogado');
+  if(!userLogado) {
+      window.location.href = "index.html";
+  
+  } else {
+    defineMusica();
+  }
+}
+
+// Selects
+const selectMusica = document.getElementById("selectMusica");
+const selectDeficuldade = document.getElementById("selectDificuldade");
+
 
 async function defineMusica() {
-  const selectMusica = document.getElementById("selectMusica");
+
   let listaDeMusicas = [];
 
   await getMusica()
@@ -35,9 +48,6 @@ async function defineMusica() {
 
 const continuarBtn = document.getElementById("botaoContinuar");
 continuarBtn.addEventListener("click", async () => {
-  const selectMusica = document.getElementById("selectMusica");
-  const selectDeficuldade = document.getElementById("selectDificuldade");
-
 
   const dificuldade = selectDeficuldade.options[selectDeficuldade.selectedIndex].value;
   const idMusica = selectMusica.options[selectMusica.selectedIndex].value;
@@ -47,6 +57,16 @@ continuarBtn.addEventListener("click", async () => {
     return;
   }
 
+  const idMapa = await getIdMapa(dificuldade, idMusica);
+  sessionStorage.setItem("idMapa", idMapa);
+  console.log(sessionStorage.getItem("idMapa"));
+
+  window.location.href = "jogo.html";
+
+});
+
+async function getIdMapa(dificuldade, idMusica){
+
   const mapaRequest = new MapaRequest(dificuldade, idMusica);
   const json = JSON.stringify(mapaRequest);
 
@@ -54,9 +74,7 @@ continuarBtn.addEventListener("click", async () => {
 
   const requestOptions = requestJson(json);
 
-  let idMapa;
-
-  await fetch("/get-mapa-musica-dificuldade", requestOptions)
+  return await fetch("/get-mapa-musica-dificuldade", requestOptions)
     .then((response) => {
       if (response.status == 404) {
         alert("Mapa não localizado!");
@@ -72,10 +90,7 @@ continuarBtn.addEventListener("click", async () => {
     })
     .then((mapa) => {
 
-      console.log("mapa ", mapa);
-
-      console.log(mapa);
-      idMapa = mapa.id;
+      return mapa.id;
 
     })
     .catch((error) => {
@@ -83,11 +98,36 @@ continuarBtn.addEventListener("click", async () => {
       throw new Error(error);
 
     });
+}
 
- 
-  window.location.href = "jogo.html?idMapa="+idMapa;
-  
+const btnSair = document.getElementById("botao-sair");
+btnSair.addEventListener('click', () => {
+  sessionStorage.removeItem("idUserLogado");
+  sessionStorage.removeItem("nomeUserLogado", null);
+  sessionStorage.removeItem("loginUserLogado", null);
 
+  window.location.href = "index.html";
+})
+
+
+
+selectMusica.addEventListener('change', async () => {
+  atualizaSelect();
+});
+selectDeficuldade.addEventListener('change', async () => {
+  atualizaSelect();
 });
 
+async function atualizaSelect(){
+  const idMusica = selectMusica.options[selectMusica.selectedIndex].value;
+  const dificuldade = selectDeficuldade.options[selectDeficuldade.selectedIndex].value;
 
+  if (idMusica == 0 || idMusica == null) {
+    zeraPlacar();
+    return;
+  }
+
+  const idMapa = await getIdMapa(dificuldade, idMusica);
+
+  atualizaPlacar(idMapa);
+}

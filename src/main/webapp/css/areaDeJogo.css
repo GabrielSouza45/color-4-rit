@@ -10,8 +10,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #000149ec;
+  align-items: center;  
+  background-image: url(./images/DeepSpaceNebula.png);
   padding: 15px;
   font-family: "Press Start 2P", system-ui;
 }
@@ -85,16 +85,6 @@ body {
   width: 200px;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-form * {
-  margin-left: 5px;
-}
 
 .area-game {
   display: flex;

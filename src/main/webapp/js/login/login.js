@@ -1,6 +1,5 @@
 import Jogador from "../ritmo/model/Jogador.js";
 import { requestJson } from "../ritmo/service/requestPost.js";
-import { userLogado } from "../usuario.js";
 
 
 const btnRegistrar = document.getElementById("botaoRegistrar");
@@ -39,11 +38,10 @@ export function loginJogador() {
         }
     })
     .then((jogador) => {
-        userLogado(
-            jogador.id,
-            jogador.login,
-            jogador.nome
-        );
+        sessionStorage.setItem("idUserLogado", jogador.id);
+        sessionStorage.setItem("loginUserLogado", jogador.login);
+        sessionStorage.setItem("nomeUserLogado", jogador.nome);
+
         window.location.href = "seletorGame.html";
     })
 

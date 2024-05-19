@@ -14,8 +14,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    background-color: rgb(4, 0, 32);
+    background-image: url(./images/DeepSpaceNebula.png);
     height: 100vh;
 }
 

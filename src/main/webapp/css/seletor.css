@@ -1,6 +1,32 @@
 body {
   font-family: "Press Start 2P", sans-serif;
-  background-color: #000b39;
+  background-image: url(./images/DeepSpaceNebula.png);
+  /* background-color: #000b39; */
+}
+
+
+.icon {
+  width: 200px;
+  position: absolute;
+  left: 40px;
+  top: 80px;
+}
+
+.icon a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.icon i {
+  font-size: 20px;
+  color: #a7a7a7;
+  transition: 0.2s ease-in;
+}
+.icon:hover i {
+  transition: 0.2s ease-in;
+  color: #fff;
+  font-size: 22px;
 }
 
 .continuar {

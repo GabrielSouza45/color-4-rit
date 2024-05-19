@@ -4,7 +4,14 @@ import { atualizaPlacar } from "./service/placar.js";
 import { salvarPlacar } from "./api/salvarPlacar.js";
 import PlacarRequest from "./model/placarRequest.js";
 import { getCorTecla } from "./service/getCorTecla.js";
-import {user} from "../usuario.js";
+
+
+window.onload = () => {
+  const userLogado = sessionStorage.getItem('loginUserLogado');
+  if(!userLogado) {
+     window.location.href = "index.html";
+  }
+}
 
 // Notas
 let listNotas = [];
@@ -16,8 +23,8 @@ let audio;
 let averiguaPontos;
 let set;
 
-let idJogador;
-let idMapa;
+let idJogador = sessionStorage.getItem("idUserLogado");
+let idMapa = sessionStorage.getItem("idMapa");
 
 // Cores
 const vermelho = document.getElementById("vermelho");
@@ -27,18 +34,8 @@ const amarelo = document.getElementById("amarelo");
 const telaProximaCor = document.getElementById("tela-proxima-nota");
 
 if (window.location.pathname.endsWith('jogo.html')) {
-
-  function obterParametroDaURL(nome) {
-    nome = nome.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + nome + '=([^&#]*)');
-    var resultados = regex.exec(location.search);
-    return resultados === null ? '' : decodeURIComponent(resultados[1].replace(/\+/g, ' '));
-  }
-  
   document.addEventListener('DOMContentLoaded', function() {
-    var parametroIdMapa = obterParametroDaURL('idMapa');
-    idMapa = parametroIdMapa;
-    atualizaPlacar(idMapa, user.id)
+    atualizaPlacar(idMapa)
     iniciarGame(idMapa);
   });
 }
@@ -164,7 +161,7 @@ export async function iniciarGame(idMapa) {
       await salvarPlacar(new PlacarRequest(idMapa, idJogador, pontos)) 
         .then ( () => {
           setTimeout(() => {
-            atualizaPlacar(idMapa, idJogador); 
+            atualizaPlacar(idMapa); 
           }, 2000);
         });
 

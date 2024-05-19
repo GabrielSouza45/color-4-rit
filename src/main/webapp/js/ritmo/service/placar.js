@@ -1,6 +1,7 @@
 import { getPlacar } from "../api/getPlacar.js";
 
-export async function atualizaPlacar(idMapa, idJogador) {
+async function atualizaPlacar(idMapa) {
+    zeraPlacar();
     console.log("Entrou no atualiza placar");
 
     let placares = [];
@@ -29,3 +30,16 @@ export async function atualizaPlacar(idMapa, idJogador) {
         jogador.textContent = objJogador.nome;
     }
 }
+
+function zeraPlacar() {
+    for (let index = 1; index < 8; index++) {
+
+        const jogador = document.getElementById("jogador" + index);
+        const pontuacao = document.getElementById("pontuacao" + index);
+
+        jogador.textContent = "Jogador";
+        pontuacao.textContent = "000";
+    }
+}
+
+export {atualizaPlacar, zeraPlacar};

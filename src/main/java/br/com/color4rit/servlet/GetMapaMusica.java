@@ -26,7 +26,7 @@ public class GetMapaMusica extends HttpServlet {
         Gson gson = new Gson();
         BufferedReader reader = req.getReader();
         String json = reader.readLine();
-        System.out.println("Entrou aqui");
+        System.out.println("Entrou aqui GetMapaMusica");
         System.out.println(json);
         MapaRequest mapaRequest = gson.fromJson(json, MapaRequest.class);
 

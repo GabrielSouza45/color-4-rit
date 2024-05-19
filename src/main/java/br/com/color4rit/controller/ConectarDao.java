@@ -9,7 +9,7 @@ public class ConectarDao {
     private final static String urlLocal =
             "jdbc:mysql://localhost:3306/color4rit";
     private final static String usuarioLocal = "root";
-    private final static String senhaLocal = ""; // Defina a senha do seu banco local
+    private final static String senhaLocal = "59762358Gfs#"; // Defina a senha do seu banco local
 
 
     private final static String urlAws =

@@ -19,8 +19,12 @@ import java.util.ArrayList;
 public class GetPlacar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println("Entrou aqui GetPlacar");
+
         BufferedReader reader = req.getReader();
         String json = reader.readLine();
+        System.out.println(json);
         Gson gson = new Gson();
         PlacarRequest placarReq = gson.fromJson(json, PlacarRequest.class);
 

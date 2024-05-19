@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet("/adiciona-notas")
 public class AdicionarNotas extends HttpServlet {
@@ -28,9 +30,20 @@ public class AdicionarNotas extends HttpServlet {
 
             Nota[] notas = new Gson().fromJson(json, Nota[].class);
 
+            CriaScript script = new CriaScript();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+            String formattedDate = LocalDateTime.now().format(formatter);
+
+            // Caminho do arquivo
+            String filePath = "SCRIPT/idMapa-"+ notas[0].getMapa().getId() +"-Script_Add_Notas_" + formattedDate + ".txt";
+
+            script.gerarScriptSQL(notas, filePath);
+
             for (Nota n : notas) {
 
                 try {
+
+
                     new NotaDao().cadastrar(n);
 
                 } catch (Exception e) {
