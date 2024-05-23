@@ -10,8 +10,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #000149ec;
+  align-items: center;  
+  background-image: url(./images/DeepSpaceNebula.png);
   padding: 15px;
   font-family: "Press Start 2P", system-ui;
 }
@@ -70,32 +70,21 @@ body {
     font-family: "Press Start 2P", system-ui;
 
 }
-.icon i{
-    font-size: 20px;
-    color: #a7a7a7;
-    transition: 0.2s ease-in;
+.icon i {
+  font-size: 20px;
+  color: #a7a7a7;
+  transition: 0.2s ease-in;
 }
 .icon:hover i {
-    transition: 0.2s ease-in;
-    color: #fff;
-    font-size: 22px;
-
+  transition: 0.2s ease-in;
+  color: #fff;
+  font-size: 22px;
 }
 .reiniciar {
-    top: 150px;
-    width: 200px;
+  top: 150px;
+  width: 200px;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-form * {
-  margin-left: 5px;
-}
 
 .area-game {
   display: flex;
@@ -107,7 +96,8 @@ form * {
   height: 100%;
   min-height: 500px;
   background-color: #000;
-
+  position: relative;
+  border: 1px solid black;
 }
 
 .area-principal {
@@ -124,6 +114,7 @@ form * {
 }
 
 .quadrado {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,24 +148,19 @@ form * {
   border-radius: 0px 0px 15px 0px;
 }
 
-
-
-
-
-
 /* Lateral direita */
 .lateral-direita {
   width: 100%;
   height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .recuo {
-    background-color: #294286;
-    height: 95%;
-    width: 95%;
+  background-color: #294286;
+  height: 95%;
+  width: 95%;
 }
 
 .proxima-nota {
@@ -196,7 +182,6 @@ form * {
   height: 70%;
   border-radius: 15px;
   border: 5px solid #000149ec;
-
 }
 
 .score {
@@ -264,4 +249,52 @@ form * {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.character-azul {
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-vermelho {
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-amarelo {
+background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.character-verde {
+  background-image: url('images/pixcat.png');
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%,-50%); 
 }

@@ -1,6 +1,17 @@
 import { getNotas } from "./api/getNotas.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
 import { atualizaPlacar } from "./service/placar.js";
+import { salvarPlacar } from "./api/salvarPlacar.js";
+import PlacarRequest from "./model/placarRequest.js";
+import { getCorTecla } from "./service/getCorTecla.js";
+
+
+window.onload = () => {
+  const userLogado = sessionStorage.getItem('loginUserLogado');
+  if(!userLogado) {
+     window.location.href = "index.html";
+  }
+}
 
 // Notas
 let listNotas = [];
@@ -12,8 +23,8 @@ let audio;
 let averiguaPontos;
 let set;
 
-let idMapa;
-let idJogador;
+let idJogador = sessionStorage.getItem("idUserLogado");
+let idMapa = sessionStorage.getItem("idMapa");
 
 // Cores
 const vermelho = document.getElementById("vermelho");
@@ -22,13 +33,13 @@ const azul = document.getElementById("azul");
 const amarelo = document.getElementById("amarelo");
 const telaProximaCor = document.getElementById("tela-proxima-nota");
 
-const buttonIniciar = document.getElementById("iniciar-jogo");
-buttonIniciar.addEventListener("click", () => {
-  idMapa = document.getElementById("id-mapa").value;
-  idJogador = 1;
-  atualizaPlacar(idMapa, idJogador);
-  iniciarGame(idMapa);
-});
+if (window.location.pathname.endsWith('jogo.html')) {
+  document.addEventListener('DOMContentLoaded', function() {
+    atualizaPlacar(idMapa)
+    iniciarGame(idMapa);
+  });
+}
+
 
 const buttonReiniciar = document.getElementById("reiniciar-jogo");
 buttonReiniciar.addEventListener("click", () => {
@@ -38,10 +49,11 @@ buttonReiniciar.addEventListener("click", () => {
   clearInterval(averiguaPontos);
   resetaCores();
 
-  iniciarGame();
+  iniciarGame(idMapa);
 });
 
-async function iniciarGame() {
+
+export async function iniciarGame(idMapa) {
   console.log("Entrou aqui em");
 
   // Pega notas no banco de dados
@@ -70,7 +82,6 @@ async function iniciarGame() {
   const musicaNome = musica.nome;
   const musicaDuracao = musica.duracao;
 
-
   setProximaCor(listNotas[0].cor.toLowerCase(), 0);
 
   // Inicia Jogo
@@ -78,7 +89,6 @@ async function iniciarGame() {
   let count = 0;
 
   setTimeout(() => {
-
     // Define Música
     audio = new Audio(`../audio/${musicaNome}.mp3`);
     audio.play();
@@ -89,7 +99,6 @@ async function iniciarGame() {
     tempoInicio = Date.now();
     set = setInterval(() => {
       if (listNotas.length != count) {
-
         const tempoNota = listNotas[count].tempo;
         const tempoAtual = Date.now() - tempoInicio;
 
@@ -122,15 +131,15 @@ async function iniciarGame() {
     }, 0);
 
     // Averiguacao de pontos
-    averiguaPontos = setTimeout(() => {
+    averiguaPontos = setTimeout(async () => {
       let pontos = 0;
-      const margem = 100;
+      const margem = 300;
 
       listNotas.forEach((nota) => {
         teclasPressionadas.forEach((press) => {
           const tempoPress = press.tempo;
           const tempoNota = nota.tempo;
-          const corPress = getNotaCor(press.tecla);
+          const corPress = getCorTecla(press.tecla);
           const corNota = nota.cor;
 
           if (
@@ -143,10 +152,19 @@ async function iniciarGame() {
           }
         });
       });
+
       resetaCores();
 
-      console.log("Pontos: ", pontos);
       alert(`Jogo finalizado, total de pontos: ${pontos}/${listNotas.length}!`);
+
+      // Salvar Placar
+      await salvarPlacar(new PlacarRequest(idMapa, idJogador, pontos)) 
+        .then ( () => {
+          setTimeout(() => {
+            atualizaPlacar(idMapa); 
+          }, 2000);
+        });
+
     }, musicaDuracao + 2000);
   }, 2000);
 
@@ -160,55 +178,30 @@ async function iniciarGame() {
     telaProximaCor.style.background = `#000`;
   }
 
-
   // Feedback Visual
-  document.addEventListener('keydown', (event) => {
-    const teclaPressionada = getNotaCor(event.key.toLowerCase()); 
-    const notaAtual = listNotas[count-1];
+  document.addEventListener("keydown", (event) => {
+    const teclaPressionada = getCorTecla(event.key.toLowerCase());
+    const notaAtual = listNotas[count - 1];
     const timing = verificaTiming(notaAtual);
 
     const quadrado = document.getElementById(teclaPressionada.toLowerCase());
     if (notaAtual.cor === teclaPressionada && timing) {
-      quadrado.style.boxShadow = 'inset 0 0 10px 5px white';
-     
+      quadrado.style.boxShadow = "inset 0 0 10px 5px white";
     } else {
-      quadrado.style.boxShadow = 'inset 0 0 10px 5px red';
-
+      quadrado.style.boxShadow = "inset 0 0 10px 5px red";
     }
     setTimeout(() => {
-      quadrado.style.boxShadow = 'none';
+      quadrado.style.boxShadow = "none";
     }, 300);
-    
   });
-  
-  function verificaTiming(nota) {
-    const margem = 100;
-    const tempoAtual = Date.now() - tempoInicio;
-    return tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem;
-  }
-}
 
-// Conversor Tecla -> Cor
-function getNotaCor(tecla) {
-  let cor;
-  switch (tecla) {
-    case "a":
-      cor = "VERMELHO";
-      break;
-    case "w":
-      cor = "AZUL";
-      break;
-    case "s":
-      cor = "VERDE";
-      break;
-    case "d":
-      cor = "AMARELO";
-      break;
-    default:
-      cor = "ERRADO";
-      break;
+  function verificaTiming(nota) {
+    const margem = 300;
+    const tempoAtual = Date.now() - tempoInicio;
+    return (
+      tempoAtual >= nota.tempo - margem && tempoAtual <= nota.tempo + margem
+    );
   }
-  return cor;
 }
 
 // Reseta para Cores Opacas

@@ -26,13 +26,15 @@ public class CreateRegistro extends HttpServlet {
         if (json != null) {
 
             Jogador jogador = new Gson().fromJson(json, Jogador.class);
-            System.out.println(" ");
-            System.out.println("Vendo json");
-            System.out.println(jogador.getNome());
-            System.out.println(jogador.getLogin());
-            System.out.println(jogador.getSenha());
 
             try {
+
+                Jogador jogadorExiste = new JogadorDao().listarPorLogin(jogador.getLogin());
+                if (jogadorExiste != null) {
+                    response.setStatus(401);
+                    return;
+                }
+
                 new JogadorDao().cadastrar(jogador);
 
             } catch (Exception e) {
@@ -42,8 +44,5 @@ public class CreateRegistro extends HttpServlet {
             }
             response.setStatus(200);
         }
-
-
-
     }
 }

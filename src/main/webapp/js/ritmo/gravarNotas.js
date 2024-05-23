@@ -4,6 +4,7 @@ import { getMapa } from "./api/getMapa.js";
 import { getNotas } from "./api/getNotas.js";
 import Nota from "./model/Nota.js";
 import { getTeclasPressionadas } from "./service/teclasPressionadas.js";
+import { getCorTecla } from "./service/getCorTecla.js";
 
 const element = document.getElementById("iniciar-gravacao");
 element.addEventListener('click', async () => {
@@ -43,8 +44,7 @@ element.addEventListener('click', async () => {
 
             setTimeout( 
                 async () => {
-                    console.log("AVANCOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ", idMapa);
-
+                   
                     await getNotas(idMapa)
                     .then((notas) => {
                         listNotas = notas;
@@ -73,23 +73,7 @@ element.addEventListener('click', async () => {
                             const tecla = press.tecla;
                             const tempo = press.tempo;
                         
-                            switch (tecla) {
-                                case 'a':
-                                    cor = 'VERMELHO'
-                                    break;
-                                case 'w':
-                                    cor = 'AZUL'
-                                    break;
-                                case 's':
-                                    cor = 'VERDE'
-                                    break;   
-                                case 'd':
-                                    cor = 'AMARELO'
-                                    break;   
-                                default:
-                                    cor = 'VERMELHO'
-                                    break;  
-                            }
+                            cor = getCorTecla(tecla);
                         
                             listaPressionados.push(new Nota(0, cor, tempo, 1, mapa))
                         

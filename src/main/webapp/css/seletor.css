@@ -1,0 +1,210 @@
+body {
+  font-family: "Press Start 2P", sans-serif;
+  background-image: url(./images/DeepSpaceNebula.png);
+  /* background-color: #000b39; */
+}
+
+
+.icon {
+  width: 200px;
+  position: absolute;
+  left: 40px;
+  top: 80px;
+}
+
+.icon a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.icon i {
+  font-size: 20px;
+  color: #a7a7a7;
+  transition: 0.2s ease-in;
+}
+.icon:hover i {
+  transition: 0.2s ease-in;
+  color: #fff;
+  font-size: 22px;
+}
+
+.continuar {
+  font-family: "Press Start 2P", sans-serif;
+  width: 400px;
+  height: 125px;
+  background-color: #192d82;
+  display: flex;
+  align-items: center;
+  margin-top: -126px;
+  margin-left: 850px;
+}
+
+.continuar button {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 30px;
+  background-color: #192d82;
+  width: 100%;
+  height: 100%;
+  color: #000b39;
+  border: 10px double #000;
+}
+
+.continuar a{
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 30px;
+  background-color: #192d82;
+  width: 100%;
+  height: 100%;
+  color: #000b39;
+
+}
+
+.continuar button:active {
+  background-color: #294286;
+}
+
+.logo img {
+  margin-top: 30px;
+  margin-left: 540px;
+  width: 400px;
+  height: auto;
+}
+
+.selecionarSom {
+  font-family: "Press Start 2P", sans-serif;
+  width: 400px;
+  height: 125px;
+  background-color: #192d82;
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+  margin-left: 200px;
+}
+
+.selecionarSom select {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 30px;
+  background-color: #192d82;
+  width: 100%;
+  height: 100%;
+  color: #000b39;
+  border: 10px double #000;
+  line-height: 125px;
+}
+
+.selecionarDif {
+  font-family: "Press Start 2P", sans-serif;
+  width: 1045px;
+  height: 125px;
+  background-color: #192d82;
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
+  margin-left: 200px;
+}
+
+.selecionarDif select {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 30px;
+  background-color: #192d82;
+  width: 100%;
+  height: 100%;
+  color: #000b39;
+  border: 10px double #000;
+}
+
+.placar {
+  font-family: "Press Start 2P", sans-serif;
+  width: 500px;
+  height: 700px;
+  background-color: #192D82;
+  display: flex;
+  align-items: center;
+  margin-top: -600px;
+  margin-left: 1300px;
+}
+
+.score {
+  width: 100%;
+  height: 98%;
+  min-height: 400px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-score {
+  border: 3px solid #000000;
+  width: 95%;
+  height: 98%;
+  padding: 15px;
+}
+
+.titulo {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jogadores {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  gap: 5px;
+  background-color: #000b39;
+}
+
+.capsula {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  height: 100%;
+  padding: 5px;
+}
+
+.capsula h3 {
+  color: #294286;
+}
+
+.jogador {
+  box-shadow: inset 0 0 2px 2px #192d83;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.pontuacao {
+  box-shadow: inset 0 0 2px 2px #294286;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.descSom{
+  
+  color: #294286;
+  margin-left: 200px;
+  text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+.descDif{
+  color: #294286;
+  margin-left: 200px;
+  margin-top: 50px;
+  position: absolute;
+  text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/areaDeJogo.css">
+    <script type="module" src="./js/ritmo/service/efeitoNotas.js"></script>
     <title>Gravar Notas</title>
 </head>
 <body>
@@ -10,12 +12,34 @@
 <form method="post">
 
     <label>Id do Mapa:</label>
-    <input type="text" name="id-mapa" id="id-mapa">
+    <input type="text" autocomplete="off" name="id-mapa" id="id-mapa">
 
     <button type="button" onclick="" id="iniciar-gravacao"> Registrar </button>
 
 
 </form>
+
+<div class="area-game">
+    <div class="area-principal">
+
+        <div class="quadrado vermelho" id="vermelho">
+            <h3 id="tecla-vermelho">W</h3>
+        </div>
+
+        <div class="quadrado verde" id="verde">
+            <h3 id="tecla-verde">D</h3>
+        </div>
+
+        <div class="quadrado azul" id="azul">
+            <h3 id="tecla-azul">A</h3>
+        </div>
+
+        <div class="quadrado amarelo" id="amarelo">
+            <h3 id="tecla-amarelo">S</h3>
+        </div>
+
+    </div>
+</div>
 
     <script type="module" src="js/ritmo/gravarNotas.js"></script>
 

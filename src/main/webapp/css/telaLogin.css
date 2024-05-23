@@ -90,8 +90,6 @@ button{
     left: 40px;
     top: 80px;
     height:40px ;
-    border: red solid 1px;
-    
 }
 
 .icon a {
@@ -115,4 +113,6 @@ button{
 .icon:hover a {
     transition: 0.2s ease-in;
     color: #fff;
+
 }
+
