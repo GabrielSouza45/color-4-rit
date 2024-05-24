@@ -229,12 +229,12 @@ public class PlacarDao extends ConectarDao implements CrudDao<Placar> {
         String sql = " SELECT * " +
                 " FROM ( " +
                 "     SELECT p.*, " +       // Select * from PLACAR
-                "            ROW_NUMBER() OVER (PARTITION BY p.fk_jogador ORDER BY p.pontuacao DESC, p.data_ini DESC) AS ranking " + // resumindo -> ordena pela pontuacao e pela data Decrescente e da um numero para aquele registro, os que tiverem maior ponto e menor data recebem uma numeracao menor
+                "            ROW_NUMBER() OVER (PARTITION BY p.fk_mapa, p.fk_jogador ORDER BY p.pontuacao DESC, p.data_ini DESC) AS ranking " + // resumindo -> ordena pela pontuacao e pela data Decrescente e da um numero para aquele registro, os que tiverem maior ponto e menor data recebem uma numeracao menor
                 "     FROM PLACAR p " +
                 "     WHERE p.fk_mapa = ? AND EXISTS( " +    // * Garante que a pontuacao pega é a maior do jogador
                 "         SELECT 1 " +
                 "         FROM PLACAR p2 " +
-                "         WHERE p2.fk_jogador = p.fk_jogador " +
+                "         WHERE p2.fk_jogador = p.fk_jogador AND p2.fk_mapa = p.fk_mapa " +
                 "         GROUP BY p2.fk_jogador " +
                 "         HAVING MAX(p2.pontuacao) = p.pontuacao " +
                 "     ) " +                 // * fim
